@@ -1,0 +1,15 @@
+check for odd num of ' or ", return err
+check need to protect everything between '' from interpretation
+check need to protect everything between "" from interpretation except dollar
+no need to interpret special chars as: & ; ( ) ` \ space tab newline * ? (except $?) [ # ~ = %
+https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html
+http://aosabook.org/en/bash.html
+https://mywiki.wooledge.org/BashParser
+
+
+parsing order:
+- check quoting parity:
+	every open should be matched a close (exit if not)
+- replace $xxx by vars if not in single quotes
+- split with spaces (except quoted parts):
+	could first replace spaces within quoted part by a nums>128, then remove quote pairs, then split		then reintroduce spaces?	
