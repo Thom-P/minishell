@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/10 13:40:17 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/10 13:55:14 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int _is_only_space(char *line);
 int parse_line(char *line)
 {
 	t_list	**tokens;
-	(void) tokens;
+	tokens = NULL;
 	printf("Parsing: %s\n", line);
 		
 	if (_is_only_space(line))
@@ -36,22 +36,23 @@ int parse_line(char *line)
 		printf("Error: missing quote\n");
 		return (-1);
 	}
-	//_tokenize(line, tokens);
+	_tokenize(line, tokens);
 
 	return (0);
 }
 
-/*int _tokenize(char *line, t_list **tokens)
+int _tokenize(char *line, t_list **tokens)
 {
 	int	ini; //pointer to first char of curr word
 	int	end; //point to char right after curr word
 	
+	t_tok tok;
+   
 	ini = 0;
-	while (line[ini])
-	{
-		skip_space()
-	}
-}*/
+	while (is_space(line))
+		line++;
+	
+}
 
 int _is_only_space(char *line)
 {
