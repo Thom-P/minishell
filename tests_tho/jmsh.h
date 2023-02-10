@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inanutshell.h                                      :+:      :+:    :+:   */
+/*   jmsh.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 13:58:42 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/07 16:02:41 by tplanes          ###   ########.fr       */
+/*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
+/*   Updated: 2023/02/10 12:21:01 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INANUTSHELL_H
-# define INANUTSHELL_H
+#ifndef JMSH_H
+# define JMSH_H
 
 # include <stdio.h>
 # include <stdlib.h>

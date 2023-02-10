@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inanutshell.c                                      :+:      :+:    :+:   */
+/*   jmsh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 13:54:17 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/07 16:02:24 by tplanes          ###   ########.fr       */
+/*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
+/*   Updated: 2023/02/10 12:20:35 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inanutshell.h"
+#include "jmsh.h"
 
 int main(int ac, char **av, char **envp)
 {
@@ -20,7 +20,7 @@ int main(int ac, char **av, char **envp)
 	(void) ac;
 	(void) av;
 	(void) envp;
-	prompt = "InaNutSHELL % ";
+	prompt = "jmsh % ";
 	while (1)
 	{
 		line = readline(prompt);
