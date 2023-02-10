@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/10 13:23:14 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/10 16:07:07 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <readline/history.h>
 
 # include "libft.h"
+
 
 
 // Parsing
@@ -37,5 +38,9 @@ typedef struct s_tok
 }	t_tok;
 
 int parse_line(char *line);
+
+// Utils
+void my_exit(char *msg, int status);
+
 
 #endif
