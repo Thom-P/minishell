@@ -1,1 +1,1 @@
-gcc -Wall -Wextra -Werror -lreadline *.c  && ./a.out
+gcc -Wall -Wextra -Werror -lreadline -I../libft/ -L../libft/ -lft *.c -o jmsh && ./jmsh
