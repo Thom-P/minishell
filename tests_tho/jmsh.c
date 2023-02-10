@@ -6,11 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/10 12:20:35 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/10 17:34:51 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
+
+static void _print_splash_screen();
 
 int main(int ac, char **av, char **envp)
 {
@@ -21,6 +23,7 @@ int main(int ac, char **av, char **envp)
 	(void) av;
 	(void) envp;
 	prompt = "jmsh % ";
+	_print_splash_screen();
 	while (1)
 	{
 		line = readline(prompt);
@@ -44,4 +47,21 @@ int main(int ac, char **av, char **envp)
 		//exec_line();
 	}
 	return (0);
+}
+
+static void _print_splash_screen()
+{
+	int		fd;
+	char	*line;
+
+	fd = open("ascii.txt", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		printf("%s", line);
+		free(line);
+	}
+	return ;
 }
