@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/10 17:31:15 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/11 17:58:32 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,11 @@
 # include "libft.h"
 # include "get_next_line.h"
 
-
-
 // Parsing
-
-# define WD 1 // regular word
-# define SQ_WORD 2 // single quoted word
-# define DQ_WORD 3 // double quoted word
-# define SP 4 // space (to denote word separation or not when quoted subparts)
-# define OP 5 // operator (redirs or pipe)
-
-// Token 
-typedef struct s_tok
-{
-	int		type; // one of the const defined above
-	char	*str;
-}	t_tok;
-
 int parse_line(char *line);
+
+// Execution
+
 
 // Utils
 void my_exit(char *msg, int status);
