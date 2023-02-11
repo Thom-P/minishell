@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/10 16:58:17 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/11 17:19:31 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int parse_line(char *line)
 
 int _tokenize(char *line, t_list **tokens)
 {
-	int	ini; //pointer to first char of curr word
+	//int	ini; //pointer to first char of curr word
 	//int	end; //point to char right after curr word
 	t_list	*token;
 
- 	ini = 0;
+ 	//ini = 0;
 	while (*line)
 	{
 		while (_is_space(*line))
