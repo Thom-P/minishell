@@ -6,18 +6,18 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:11:53 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/13 16:38:23 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/13 17:23:56 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int ind_in_set(char c, char *set)
+int	ind_in_set(char c, char *set)
 {
 	int	i;
 
 	i = 0;
-	while(set[i])
+	while (set[i])
 	{
 		if (c == set[i])
 			return (i);
@@ -26,7 +26,7 @@ int ind_in_set(char c, char *set)
 	return (-1);
 }
 
-int is_only_space(char *line)
+int	is_only_space(char *line)
 {
 	while (*line)
 	{	
@@ -37,14 +37,14 @@ int is_only_space(char *line)
 	return (1);
 }
 
-int is_space(char c)
+int	is_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n')
 		return (1);
 	return (0);
 }
 
-int odd_num_quote(char *line)
+int	odd_num_quote(char *line)
 {
 	char	in_quote;
 
@@ -52,7 +52,7 @@ int odd_num_quote(char *line)
 	while (*line)
 	{
 		if (*line != '"' && *line != '\'')
-		{	
+		{
 			line++;
 			continue ;
 		}
@@ -60,9 +60,9 @@ int odd_num_quote(char *line)
 			in_quote = *line;
 		else if (in_quote == *line)
 			in_quote = 0;
-		line++;	
+		line++;
 	}
 	if (in_quote)
-		return (1);	
+		return (1);
 	return (0);
 }
