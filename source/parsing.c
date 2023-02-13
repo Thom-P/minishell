@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/11 17:55:14 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:15:06 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,34 @@ int _tokenize(char *line, t_list **tokens)
 			ft_lstadd_back(tokens, token);
 		}
 	}
-	return (1);
+	return (0);
 }
 
 t_tok *_get_next_tok(char **line)
 {
 	int		i;
-	char	*set = " <>|\"'";
+	char	*set = " <>|";
+	int		in_quote;
 	t_tok	*tok;
 
-	tok = (t_tok *)malloc(sizeof(tok));
+	tok = (t_tok *)malloc(sizeof(t_tok));
 	if (tok == NULL)
 		my_exit("Malloc error in parsing: get_next_tok\n", EXIT_FAILURE);
 	i = 0;
-	while ((*line)[i] && _ind_in_set((*line)[i],  set) == -1) //while not special char
+	in_quote = 0;
+	while ((*line)[i] && (in_quote || _ind_in_set((*line)[i],  set) == -1)) //while not spec char 
+	{
+		if ((*line)[i] != '\'' && (*line)[i] != '"')
+		{
+			i++;
+			continue ;	
+		}
+		if (in_quote == 0)
+			in_quote = (*line)[i];
+		else if (in_quote == (*line)[i])
+			in_quote = 0;
 		i++;
+	}
 	if (i > 0)
 	{
 		tok -> type = WD;
@@ -92,18 +105,19 @@ t_tok *_get_next_tok(char **line)
 			my_exit("Malloc error in parsing: get_next_tok\n", EXIT_FAILURE);
 		ft_memcpy(tok -> str, *line, i);
 		tok -> str[i] = '\0';
-		(*line += i);
+		(*line) += i;
 		//printf("%s\n", tok -> str);
 	}
 	else 
 	{
 		tok -> type = OP;
 		//tok -> str = NULL;
-		tok -> str = malloc(1 * sizeof(char) + 1);
+		tok -> str = (char *)malloc(1 * sizeof(char) + 1);
 		if (tok -> str == NULL)
 			my_exit("malloc err pars tok", EXIT_FAILURE);
 		tok -> str[0] = set[_ind_in_set((*line)[i], set)];
-		(*line += 1);
+		tok -> str[1] = '\0';
+		(*line) += 1;
 	}
 	return (tok);
 }
@@ -166,6 +180,6 @@ int _odd_num_quote(char *line)
 void _print_token(void *tok)
 {
 	printf("Token type: %i\n", ((t_tok *)tok)-> type);
-	printf("Token val: %s\n", ((t_tok *)tok)-> str);
+	printf("Token val: %s\n\n", ((t_tok *)tok)-> str);
 	return ;
 }
