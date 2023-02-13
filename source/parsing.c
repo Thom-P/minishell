@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/13 14:15:06 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/13 15:55:08 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_tok *_get_next_tok(char **line)
 	int		i;
 	char	*set = " <>|";
 	int		in_quote;
+	int		has_quote;
 	t_tok	*tok;
 
 	tok = (t_tok *)malloc(sizeof(t_tok));
@@ -84,6 +85,7 @@ t_tok *_get_next_tok(char **line)
 		my_exit("Malloc error in parsing: get_next_tok\n", EXIT_FAILURE);
 	i = 0;
 	in_quote = 0;
+	has_quote = 0;
 	while ((*line)[i] && (in_quote || _ind_in_set((*line)[i],  set) == -1)) //while not spec char 
 	{
 		if ((*line)[i] != '\'' && (*line)[i] != '"')
@@ -91,6 +93,7 @@ t_tok *_get_next_tok(char **line)
 			i++;
 			continue ;	
 		}
+		has_quote = 1;
 		if (in_quote == 0)
 			in_quote = (*line)[i];
 		else if (in_quote == (*line)[i])
@@ -99,25 +102,40 @@ t_tok *_get_next_tok(char **line)
 	}
 	if (i > 0)
 	{
-		tok -> type = WD;
+		if (has_quote)
+			tok -> type = WORD_Q; //word that contains quotes
+		else
+			tok -> type = WORD;
 		tok -> str = (char *)malloc(i * sizeof(char) + 1);
 		if (tok -> str == NULL)
 			my_exit("Malloc error in parsing: get_next_tok\n", EXIT_FAILURE);
 		ft_memcpy(tok -> str, *line, i);
 		tok -> str[i] = '\0';
+		tok -> len = i;
 		(*line) += i;
 		//printf("%s\n", tok -> str);
 	}
 	else 
 	{
+		
 		tok -> type = OP;
-		//tok -> str = NULL;
-		tok -> str = (char *)malloc(1 * sizeof(char) + 1);
+		tok -> str = (char *)malloc(2 * sizeof(char) + 1);
 		if (tok -> str == NULL)
 			my_exit("malloc err pars tok", EXIT_FAILURE);
-		tok -> str[0] = set[_ind_in_set((*line)[i], set)];
 		tok -> str[1] = '\0';
-		(*line) += 1;
+		tok -> str[2] = '\0';
+		tok -> str[0] = (*line)[i];
+		if ((*line)[i + 1] == (*line)[i] && (*line)[i] != '|')
+		{
+			tok -> str[1] = (*line)[i];
+			tok -> len = 2;
+			(*line) += 2;
+		}	
+		else
+		{
+			tok -> len = 1;
+			(*line) += 1;
+		}
 	}
 	return (tok);
 }
@@ -180,6 +198,7 @@ int _odd_num_quote(char *line)
 void _print_token(void *tok)
 {
 	printf("Token type: %i\n", ((t_tok *)tok)-> type);
-	printf("Token val: %s\n\n", ((t_tok *)tok)-> str);
+	printf("Token val: %s\n", ((t_tok *)tok)-> str);
+	printf("Token len: %i\n\n", ((t_tok *)tok)-> len);
 	return ;
 }
