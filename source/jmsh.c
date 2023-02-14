@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/14 13:42:10 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 14:08:00 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int main(int ac, char **av, char **envp)
 		{
 			free(line);
 			continue ;
+		}
+		if (ft_strncmp(line, "exit", 5) == 0) //temporary hack to avoid writing builtin exit
+		{
+			free(line);
+			return (0); //need to return status of last cmd instead
 		}
 		add_history(line);
 		if (parse_line(line) == -1)
