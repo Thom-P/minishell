@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/10 17:34:51 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:42:10 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char **av, char **envp)
 	(void) ac;
 	(void) av;
 	(void) envp;
-	prompt = "jmsh % ";
+	prompt = "jmsh-1.0$ ";
 	_print_splash_screen();
 	while (1)
 	{

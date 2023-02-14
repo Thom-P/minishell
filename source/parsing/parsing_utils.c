@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:11:53 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/13 17:23:56 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:38:38 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,24 @@ int	odd_num_quote(char *line)
 		return (1);
 	return (0);
 }
+
+int verify_tokens(t_list **tokens)
+{
+	t_tok 	*tok;
+
+	tok = (t_tok *)(*tokens)-> content;
+	if (tok -> type == op && tok -> str[0] == '|')
+	{	
+		printf("jmsh: syntax error near unexpected token `|'\n");
+		//free_tokens(tokens);
+		return (-1);
+	}
+	return (0);
+}
+
+/*void free_tokens(t_list **tokens)
+{
+	tokens = NULL;
+	my_exit(NULL);
+	return ;
+}*/

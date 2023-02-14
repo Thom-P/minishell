@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/13 18:14:38 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:37:44 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "jmsh.h"
 
-//WORDQ is a word that contains one or sevral quoted subparts (" or ')
+//WORDQ is a word that contains one or several quoted subparts (" or ')
 enum e_tok{word, wordq, op};
 
 // Token 
@@ -34,5 +34,6 @@ int	odd_num_quote(char *line);
 int	is_space(char c);
 int	is_only_space(char *line);
 int	ind_in_set(char c, char *set);
+int verify_tokens(t_list **tokens);
 
 #endif
