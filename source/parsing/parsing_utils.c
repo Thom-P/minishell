@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:11:53 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/14 14:49:08 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 15:04:09 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ int	odd_num_quote(char *line)
 	return (0);
 }
 
+/* 
+Return error if:
+- first token is pipe
+- last token is any operator
+*/
 int verify_tokens(t_list **tokens)
 {
 	t_tok 	*tok;
@@ -78,6 +83,15 @@ int verify_tokens(t_list **tokens)
 		ft_lstclear(tokens, &free_token);
 		return (-1);
 	}
+    tok = ft_lstlast(*tokens)-> content;
+	if (tok -> type == op)
+	{	
+		printf("jmsh: syntax error near unexpected token `newline'\n");
+		ft_lstclear(tokens, &free_token);
+		return (-1);
+	}
+
+
 	return (0);
 }
 
