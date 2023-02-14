@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:11:53 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/14 13:38:38 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 14:49:08 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ int verify_tokens(t_list **tokens)
 	if (tok -> type == op && tok -> str[0] == '|')
 	{	
 		printf("jmsh: syntax error near unexpected token `|'\n");
-		//free_tokens(tokens);
+		ft_lstclear(tokens, &free_token);
 		return (-1);
 	}
 	return (0);
 }
 
-/*void free_tokens(t_list **tokens)
+void free_token(void *tok)
 {
-	tokens = NULL;
-	my_exit(NULL);
+	free(((t_tok *)tok)->str);
+	free((t_tok *)tok);
 	return ;
-}*/
+}

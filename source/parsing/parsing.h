@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/14 13:37:44 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/14 14:23:36 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	is_space(char c);
 int	is_only_space(char *line);
 int	ind_in_set(char c, char *set);
 int verify_tokens(t_list **tokens);
+void free_token(void *tok);
 
 #endif
