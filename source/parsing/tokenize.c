@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/13 18:16:00 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/15 15:13:55 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static t_tok	*_get_next_tok(char **line);
 
-static t_tok	*_extract_token(char **line, int i, int has_quote);
+static t_tok	*_extract_token(char **line, int i, int has_quote[2]);
 
-static void		_build_word_tok(t_tok *tok, char **line, int i, int has_quote);
+static void		_build_word_tok(t_tok *tok, char **line, int i, int has_quote[2]);
 
 static void		_build_operator_tok(t_tok *tok, char **line, int i);
 
@@ -40,35 +40,38 @@ int	tokenize(char *line, t_list **tokens)
 }
 
 //keep including chars while not special or within quote
+//has_quote[0] to record if has single quotes
+//has_quote[1] to record if has dbl quotes
 static t_tok	*_get_next_tok(char **line)
 {
 	int		i;
-	char	*set;
 	int		in_quote;
-	int		has_quote;
+	int		has_quote[2];
 
 	i = 0;
-	set = " <>|";
 	in_quote = 0;
-	has_quote = 0;
-	while ((*line)[i] && (in_quote || ind_in_set((*line)[i], set) == -1))
+	has_quote[0] = 0;
+	has_quote[1] = 0;
+	while ((*line)[i] && (in_quote || ind_in_set((*line)[i], " <>|") == -1))
 	{
 		if ((*line)[i] != '\'' && (*line)[i] != '"')
 		{
 			i++;
 			continue ;
 		}
-		has_quote = 1;
+		if ((*line)[i] == '"')
+			has_quote[1] = 1;
+		else
+			has_quote[0] = 1;
 		if (in_quote == 0)
 			in_quote = (*line)[i];
-		else if (in_quote == (*line)[i])
+		else if (in_quote == (*line)[i++])
 			in_quote = 0;
-		i++;
 	}
 	return (_extract_token(line, i, has_quote));
 }
 
-static t_tok	*_extract_token(char **line, int i, int has_quote)
+static t_tok	*_extract_token(char **line, int i, int has_quote[2])
 {
 	t_tok	*tok;
 
@@ -82,9 +85,11 @@ static t_tok	*_extract_token(char **line, int i, int has_quote)
 	return (tok);
 }
 
-static void	_build_word_tok(t_tok *tok, char **line, int i, int has_quote)
+static void	_build_word_tok(t_tok *tok, char **line, int i, int has_quote[2])
 {
-	if (has_quote)
+	if (has_quote[1])
+		tok -> type = wordqq;
+	else if (has_quote[0])
 		tok -> type = wordq;
 	else
 		tok -> type = word;

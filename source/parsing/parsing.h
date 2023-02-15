@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/15 14:13:51 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/15 15:15:44 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "jmsh.h"
 
-//WORDQ is a word that contains one or several quoted subparts (" or ')
-enum e_tok{word, wordq, op};
+//WORDQ is a word that contains one or several single quoted subparts (but no ")
+//WORDQQ is a word that contains one or more double quoted parts (and 0 or more ')
+enum e_tok{word, wordq, wordqq, op};
 
 // Token 
 typedef struct s_tok
