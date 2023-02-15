@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/14 14:23:36 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:13:51 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ typedef struct s_tok
 }	t_tok;
 
 // Main functions
-int	tokenize(char *line, t_list **tokens);
+int		tokenize(char *line, t_list **tokens);
 
 //Utils
-int	odd_num_quote(char *line);
-int	is_space(char c);
-int	is_only_space(char *line);
-int	ind_in_set(char c, char *set);
-int verify_tokens(t_list **tokens);
-void free_token(void *tok);
+int		odd_num_quote(char *line);
+int		is_space(char c);
+int		is_only_space(char *line);
+int		ind_in_set(char c, char *set);
+int		verify_tokens(t_list **tokens);
+void	free_token(void *tok);
 
 #endif
