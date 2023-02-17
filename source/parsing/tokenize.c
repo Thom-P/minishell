@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/15 15:13:55 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:41:06 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_tok	*_get_next_tok(char **line);
 
 static t_tok	*_extract_token(char **line, int i, int has_quote[2]);
 
-static void		_build_word_tok(t_tok *tok, char **line, int i, int has_quote[2]);
+static void		_build_wd_tok(t_tok *tok, char **line, int i, int has_quote[2]);
 
 static void		_build_operator_tok(t_tok *tok, char **line, int i);
 
@@ -79,13 +79,13 @@ static t_tok	*_extract_token(char **line, int i, int has_quote[2])
 	if (tok == NULL)
 		my_exit("Malloc error in parsing extract_token\n", EXIT_FAILURE);
 	if (i > 0)
-		_build_word_tok(tok, line, i, has_quote);
+		_build_wd_tok(tok, line, i, has_quote);
 	else
 		_build_operator_tok(tok, line, i);
 	return (tok);
 }
 
-static void	_build_word_tok(t_tok *tok, char **line, int i, int has_quote[2])
+static void	_build_wd_tok(t_tok *tok, char **line, int i, int has_quote[2])
 {
 	if (has_quote[1])
 		tok -> type = wordqq;
