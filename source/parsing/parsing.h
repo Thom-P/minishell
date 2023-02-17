@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/17 19:30:54 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/17 20:10:42 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ single quoted subparts (but no ")
 WORDQQ is a word that contains one or several
 double quoted parts (and 0 or more ')
 */
-enum e_tok{word, space, wordq, wordqq, op};
+enum e_tok{word, space, op, var, wordq, wordqq};
 
 // Token 
 typedef struct s_tok
