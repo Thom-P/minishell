@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/17 14:53:29 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/17 19:37:53 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ int	parse_line(char *line)
 		return (-1);
 	}
 	tokenize(line, &tokens);
+	ft_lstiter(tokens, _print_token);
+	ft_lstclear(&tokens, &free_token);
+	/*
 	if (verify_tokens(&tokens) == -1)
 		return (-1);
 	ft_lstiter(tokens, _print_token);
 	process_quotes(&tokens);
 	ft_lstiter(tokens, _print_token);
 	ft_lstclear(&tokens, &free_token);
+	*/
 	return (0);
 }
 

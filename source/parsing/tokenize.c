@@ -6,71 +6,96 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/17 15:41:06 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/17 19:37:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static t_tok	*_get_next_tok(char **line);
+static void	_add_word_token(t_list **tokens, char **line);
+
+static void	_add_space_token(t_list **tokens, char **line);
+
+/*static t_tok	*_get_next_tok(char **line);
 
 static t_tok	*_extract_token(char **line, int i, int has_quote[2]);
 
 static void		_build_wd_tok(t_tok *tok, char **line, int i, int has_quote[2]);
 
 static void		_build_operator_tok(t_tok *tok, char **line, int i);
-
+*/
 int	tokenize(char *line, t_list **tokens)
 {
-	t_list	*token;
-
+	char	*spec_chars;
+	
+	spec_chars = " <>|'\"";
 	while (*line)
 	{
-		while (is_space(*line))
-			line++;
-		if (*line != 0)
-		{	
-			token = ft_lstnew((void *)_get_next_tok(&line));
-			if (token == NULL)
-				my_exit("Error in parsing: lst_new\n", EXIT_FAILURE);
-			ft_lstadd_back(tokens, token);
-		}
+		if (ind_in_set(*line, spec_chars) == -1)
+			_add_word_token(tokens, &line);
+		else if (*line == '\'' || *line == '"')
+			;
+			//_add_quoted_word_tok(tokens, &line);
+		else if (*line == ' ')
+			_add_space_token(tokens, &line);
+		else
+			;
+			//_add_operator_tok(tokens, &line);
 	}
 	return (0);
 }
 
-//keep including chars while not special or within quote
-//has_quote[0] to record if has single quotes
-//has_quote[1] to record if has dbl quotes
-static t_tok	*_get_next_tok(char **line)
-{
+static void	_add_word_token(t_list **tokens, char **line)
+{		
+	char	*spec_chars = " <>|'\"";
+	t_list	*token;
+	t_tok	*tok;
 	int		i;
-	int		in_quote;
-	int		has_quote[2];
 
 	i = 0;
-	in_quote = 0;
-	has_quote[0] = 0;
-	has_quote[1] = 0;
-	while ((*line)[i] && (in_quote || ind_in_set((*line)[i], " <>|") == -1))
-	{
-		if ((*line)[i] != '\'' && (*line)[i] != '"')
-		{
-			i++;
-			continue ;
-		}
-		if ((*line)[i] == '"')
-			has_quote[1] = 1;
-		else
-			has_quote[0] = 1;
-		if (in_quote == 0)
-			in_quote = (*line)[i];
-		else if (in_quote == (*line)[i++])
-			in_quote = 0;
-	}
-	return (_extract_token(line, i, has_quote));
+	while ((*line)[i] && ind_in_set((*line)[i], spec_chars) == -1)
+		i++;
+	tok = (t_tok *)malloc(sizeof(t_tok));
+	if (tok == NULL)
+		my_exit("Malloc error in parsing: malloc add_word_token\n", EXIT_FAILURE);
+	tok -> type = word;
+	tok -> str = (char *)malloc(i * sizeof(char) + 1);
+	if (tok -> str == NULL)
+		my_exit("Malloc error in parsing: add_word_token\n", EXIT_FAILURE);
+	ft_memcpy(tok -> str, *line, i);
+	tok -> str[i] = '\0';
+	tok -> len = i;
+	(*line) += i;
+	token = ft_lstnew((void *) tok);
+	if (token == NULL)
+		my_exit("Error in parsing: lst_new\n", EXIT_FAILURE);
+	ft_lstadd_back(tokens, token);
+	return ;
 }
 
+static void	_add_space_token(t_list **tokens, char **line)
+{		
+	t_list	*token;
+	t_tok	*tok;
+	
+	while (**line && is_space(**line))
+		(*line)++;
+	tok = (t_tok *)malloc(sizeof(t_tok));
+	if (tok == NULL)
+		my_exit("Malloc error in parsing: add_space_token\n", EXIT_FAILURE);
+	tok -> type = space;
+	tok -> str = NULL;
+	tok -> len = 0;
+	token = ft_lstnew((void *) tok);
+	if (token == NULL)
+		my_exit("Error in parsing: lst_new\n", EXIT_FAILURE);
+	ft_lstadd_back(tokens, token);
+	return ;
+}
+
+
+
+/*
 static t_tok	*_extract_token(char **line, int i, int has_quote[2])
 {
 	t_tok	*tok;
@@ -83,8 +108,8 @@ static t_tok	*_extract_token(char **line, int i, int has_quote[2])
 	else
 		_build_operator_tok(tok, line, i);
 	return (tok);
-}
-
+}*/
+/*
 static void	_build_wd_tok(t_tok *tok, char **line, int i, int has_quote[2])
 {
 	if (has_quote[1])
@@ -102,7 +127,8 @@ static void	_build_wd_tok(t_tok *tok, char **line, int i, int has_quote[2])
 	(*line) += i;
 	return ;
 }
-
+*/
+/*
 static void	_build_operator_tok(t_tok *tok, char **line, int i)
 {	
 	tok -> type = op;
@@ -122,4 +148,4 @@ static void	_build_operator_tok(t_tok *tok, char **line, int i)
 		(*line) += 1;
 	}
 	return ;
-}
+}*/
