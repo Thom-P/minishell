@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:44:35 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 16:43:11 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:51:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static void	_add_dbl_qword_token(t_list **tokens, char **line);
 
 void	add_var_token(t_list **tokens, char **line)
 {		
-	char	*spec_chars = " $<>|'\"";
+	char	*spec_chars;
 	int		i;
 	t_tok	*tok;
-	
+
+	spec_chars = " $<>|'\"";
 	new_token(tokens, &tok);
 	if ((*line)[1] == '?')
 	{	
@@ -67,31 +68,31 @@ static void	_add_dbl_qword_token(t_list **tokens, char **line)
 
 void	build_word_tok(t_tok *tok, char **line, int i)
 {
-    tok -> type = word;
-    tok -> str = NULL;
+	tok -> type = word;
+	tok -> str = NULL;
 	if (i > 0)
 	{
 		tok -> str = (char *)malloc(i * sizeof(char) + 1);
-    	if (tok -> str == NULL)
-        	my_exit("Malloc error in parsing: build_word_token\n", EXIT_FAILURE);
-    	ft_memcpy(tok -> str, *line, i);
-    	tok -> str[i] = '\0';
-    }
+		if (tok -> str == NULL)
+			my_exit("Malloc error in parsing: build_word_token\n", EXIT_FAILURE);
+		ft_memcpy(tok -> str, *line, i);
+		tok -> str[i] = '\0';
+	}
 	tok -> len = i;
-    (*line) += i;
-    return ;
+	(*line) += i;
+	return ;
 }
 
 void	build_var_tok(t_tok *tok, char **line, int i)
 {
-    (*line) += 1;
+	(*line) += 1;
 	tok -> type = var;
-    tok -> str = (char *)malloc(i * sizeof(char) + 1);
-    if (tok -> str == NULL)
-        my_exit("Malloc error in parsing: build_var_token\n", EXIT_FAILURE);
-    ft_memcpy(tok -> str, *line, i);
-    tok -> str[i] = '\0';
-    tok -> len = i;
-    (*line) += i;
-    return ;
+	tok -> str = (char *)malloc(i * sizeof(char) + 1);
+	if (tok -> str == NULL)
+		my_exit("Malloc error in parsing: build_var_token\n", EXIT_FAILURE);
+	ft_memcpy(tok -> str, *line, i);
+	tok -> str[i] = '\0';
+	tok -> len = i;
+	(*line) += i;
+	return ;
 }

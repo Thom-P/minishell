@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 16:41:35 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:47:27 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	_add_sgl_qword_token(t_list **tokens, char **line);
 int	tokenize(char *line, t_list **tokens)
 {
 	char	*spec_chars;
-	
+
 	spec_chars = " $<>|'\"";
 	while (*line)
 	{
@@ -46,9 +46,10 @@ int	tokenize(char *line, t_list **tokens)
 static void	_add_word_token(t_list **tokens, char **line)
 {		
 	t_tok	*tok;
-	char	*spec_chars = " $<>|'\"";
+	char	*spec_chars;
 	int		i;
 
+	spec_chars = " $<>|'\"";
 	i = 0;
 	while ((*line)[i] && ind_in_set((*line)[i], spec_chars) == -1)
 		i++;
@@ -80,7 +81,7 @@ static void	_add_sgl_qword_token(t_list **tokens, char **line)
 static void	_add_space_token(t_list **tokens, char **line)
 {		
 	t_tok	*tok;
-	
+
 	while (**line && is_space(**line))
 		(*line)++;
 	new_token(tokens, &tok);
@@ -93,7 +94,7 @@ static void	_add_space_token(t_list **tokens, char **line)
 static void	_add_operator_token(t_list **tokens, char **line)
 {		
 	t_tok	*tok;
-	
+
 	new_token(tokens, &tok);
 	tok -> type = op;
 	tok -> str = (char *)malloc(2 * sizeof(char) + 1);
