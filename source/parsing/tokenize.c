@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 11:04:49 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 11:11:18 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	_add_operator_token(t_list **tokens, char **line)
 	tok -> str[0] = **line;
 	tok -> len = 1;
 	(*line) += 1;
-	if (**line == *(*line - 1) && *(*line - 1) != '|')
+	if (**line == *(*line - 1) && (**line == '<' || **line == '>'))
 	{
 		tok -> str[1] = **line;
 		tok -> len += 1;
