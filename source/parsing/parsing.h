@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 11:00:53 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 12:29:56 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ int		tokenize(char *line, t_list **tokens);
 int		verify_tokens(t_list **tokens);
 void	process_quotes(t_list **ptr_tokens);
 
-//Tokenize utils
+//Tokenize
 void	new_token(t_list **tokens, t_tok** tok);
 void	free_token(void *tok);
 void	build_word_tok(t_tok *tok, char **line, int i);
+void	build_var_tok(t_tok *tok, char **line, int i);
+void    add_var_token(t_list **tokens, char **line);
 
 //Parsing utils
 int		odd_num_quote(char *line);

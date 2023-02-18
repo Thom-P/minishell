@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 11:11:18 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 12:28:08 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	tokenize(char *line, t_list **tokens)
 {
 	char	*spec_chars;
 	
-	spec_chars = " <>|'\"";
+	spec_chars = " $<>|'\"";
 	while (*line)
 	{
 		if (ind_in_set(*line, spec_chars) == -1)
@@ -35,6 +35,8 @@ int	tokenize(char *line, t_list **tokens)
 			;//add_dbl_qword_tokens(tokens, &line);
 		else if (*line == ' ')
 			_add_space_token(tokens, &line);
+		else if (*line == '$')
+			add_var_token(tokens, &line);
 		else
 			_add_operator_token(tokens, &line);
 	}
@@ -44,7 +46,7 @@ int	tokenize(char *line, t_list **tokens)
 static void	_add_word_token(t_list **tokens, char **line)
 {		
 	t_tok	*tok;
-	char	*spec_chars = " <>|'\"";
+	char	*spec_chars = " $<>|'\"";
 	int		i;
 
 	i = 0;
