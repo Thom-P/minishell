@@ -6,11 +6,13 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 11:44:35 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 12:30:56 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 13:03:33 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static void	_add_dbl_qword_token(t_list **tokens, char **line);
 
 void	add_var_token(t_list **tokens, char **line)
 {		
@@ -29,47 +31,31 @@ void	add_var_token(t_list **tokens, char **line)
 	return ;
 }
 
-
-
-/*
-void	add_dbl_qword_tokens(t_list **tokens, char **line)
+void	add_dbl_quote_tokens(t_list **tokens, char **line)
 {		
-	char	*var_delim = " '\"";
-	(*line += 1);
+	(*line) += 1;
 	while (**line != '"')
 	{
-		if (**line == '$' && *(*line + 1) != '"' && (*line +1) )
-	}
-
-	i = 0;
-	(*line) += 1;
-	while ((*line)[i] && (*line)[i] != '\'')
-		i++;
-	if (i > 0)
-	{
-		new_token(tokens, &tok);
-		build_word_tok(tok, line, i);
-	}
+		if (**line == '$')
+			add_var_token(tokens, line);
+		else
+			_add_dbl_qword_token(tokens, line);
+	}	
 	(*line) += 1;
 	return ;
 }
 
-void	add_dbl_qword_tokens(t_list **tokens, char **line)
+static void	_add_dbl_qword_token(t_list **tokens, char **line)
 {		
 	t_tok	*tok;
 	int		i;
 
 	i = 0;
-	(*line) += 1;
-	while ((*line)[i] && (*line)[i] != '\'')
+	while ((*line)[i] && (*line)[i] != '$' && (*line)[i] != '"')
 		i++;
-	if (i > 0)
-	{
-		new_token(tokens, &tok);
-		build_word_tok(tok, line, i);
-	}
-	(*line) += 1;
+	new_token(tokens, &tok);
+	build_word_tok(tok, line, i);
 	return ;
 }
-*/
+
 

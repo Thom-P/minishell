@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 12:28:08 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 13:02:55 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	tokenize(char *line, t_list **tokens)
 		else if (*line == '\'')
 			_add_sgl_qword_token(tokens, &line);
 		else if (*line == '"')
-			;//add_dbl_qword_tokens(tokens, &line);
+			add_dbl_quote_tokens(tokens, &line);
 		else if (*line == ' ')
 			_add_space_token(tokens, &line);
 		else if (*line == '$')
