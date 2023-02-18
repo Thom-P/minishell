@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 10:56:10 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 15:32:48 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	parse_line(char *line)
 	}
 	tokenize(line, &tokens);
 	ft_lstiter(tokens, _print_token);
+	printf("\n");
 	ft_lstclear(&tokens, &free_token);
 	/*
 	if (verify_tokens(&tokens) == -1)
@@ -41,11 +42,28 @@ int	parse_line(char *line)
 	return (0);
 }
 
-// for debug
+// for debug only
 static void	_print_token(void *tok)
 {
-	printf("Token type: %i\n", ((t_tok *)tok)-> type);
-	printf("Token val: %s\n", ((t_tok *)tok)-> str);
-	printf("Token len: %i\n\n", ((t_tok *)tok)-> len);
+	char	*type;
+
+	switch (((t_tok *)tok)-> type)
+	{
+		case word:
+		type = "wd";
+		break;
+		case space:
+		type = "sp";
+		break;
+		case op:
+		type = "op";
+		break;
+		case var:
+		type = "vr";
+		break;
+		default:
+		type = "??";
+	}
+	printf("(%s:%s:%i) ", type, ((t_tok *)tok)-> str, ((t_tok *)tok)-> len);
 	return ;
 }
