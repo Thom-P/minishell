@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/17 19:37:53 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 10:56:10 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,5 @@ static void	_print_token(void *tok)
 	printf("Token type: %i\n", ((t_tok *)tok)-> type);
 	printf("Token val: %s\n", ((t_tok *)tok)-> str);
 	printf("Token len: %i\n\n", ((t_tok *)tok)-> len);
-	return ;
-}
-
-void	free_token(void *tok)
-{
-	free(((t_tok *)tok)->str);
-	free((t_tok *)tok);
 	return ;
 }
