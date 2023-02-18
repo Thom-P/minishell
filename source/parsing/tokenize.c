@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:06:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 13:02:55 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:41:35 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	_add_word_token(t_list **tokens, char **line)
 }
 
 //extract word inside the single quotes
+//cannot have two successive null words
 static void	_add_sgl_qword_token(t_list **tokens, char **line)
 {		
 	t_tok	*tok;
@@ -67,8 +68,8 @@ static void	_add_sgl_qword_token(t_list **tokens, char **line)
 	(*line) += 1;
 	while ((*line)[i] && (*line)[i] != '\'')
 		i++;
-	if (i > 0)
-	{
+	if (i > 0 || !is_last_tok_null_wd(tokens))
+	{	
 		new_token(tokens, &tok);
 		build_word_tok(tok, line, i);
 	}
