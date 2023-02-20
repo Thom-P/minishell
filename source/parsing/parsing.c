@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 10:51:59 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/20 17:36:44 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,19 @@ int	parse_line(char *line, char **my_envp)
 		return (-1);
 	}
 	tokenize(line, &tokens);
+	printf("Before var exp:\n");
 	ft_lstiter(tokens, _print_token);
 	printf("\n");
 	expand_variables(tokens, my_envp);
+	printf("After var exp:\n");
 	ft_lstiter(tokens, _print_token);
 	printf("\n");
+	merge_word_toks(tokens);
+	printf("After word merge:\n");
+	ft_lstiter(tokens, _print_token);
+	printf("\n");
+
+
 	/*
 	if (verify_tokens(&tokens) == -1)
 		return (-1);
