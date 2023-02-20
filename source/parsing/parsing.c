@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/18 15:32:48 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/20 10:51:59 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	_print_token(void *tok);
 
-int	parse_line(char *line)
+int	parse_line(char *line, char **my_envp)
 {
 	t_list	*tokens;
 
@@ -30,15 +30,17 @@ int	parse_line(char *line)
 	tokenize(line, &tokens);
 	ft_lstiter(tokens, _print_token);
 	printf("\n");
-	ft_lstclear(&tokens, &free_token);
+	expand_variables(tokens, my_envp);
+	ft_lstiter(tokens, _print_token);
+	printf("\n");
 	/*
 	if (verify_tokens(&tokens) == -1)
 		return (-1);
 	ft_lstiter(tokens, _print_token);
 	process_quotes(&tokens);
 	ft_lstiter(tokens, _print_token);
-	ft_lstclear(&tokens, &free_token);
 	*/
+	ft_lstclear(&tokens, &free_token);
 	return (0);
 }
 

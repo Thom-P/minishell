@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/15 14:41:08 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/20 10:53:20 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **envp)
 			return (0); //need to return status of last cmd instead
 		}
 		add_history(line);
-		if (parse_line(line) == -1)
+		if (parse_line(line, envp) == -1) //will need to copy envp!
 		{
 			free(line);
 			continue ;		

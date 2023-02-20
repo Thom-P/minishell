@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/14 13:58:42 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/20 10:52:32 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "get_next_line.h"
 
 // Parsing
-int parse_line(char *line);
+int parse_line(char *line, char **my_envp);
 
 // Execution
 
