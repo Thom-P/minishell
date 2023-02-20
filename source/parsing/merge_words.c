@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:42:50 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 18:36:44 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/20 18:48:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	_merge_word(t_list *token, t_tok *tok_ini);
 void	merge_word_toks(t_list *tokens)
 {
 	t_tok	*tok;
+
 	while (tokens)
 	{
 		tok = (t_tok *)(tokens -> content);
