@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 17:37:18 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/21 13:28:40 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ char	*get_var_from_envp(char *var_name, int var_len, char **my_envp);
 
 //Merge words
 void	merge_word_toks(t_list *tokens);
+
+//Remove space tokens
+void	remove_space_toks(t_list **tokens);
 
 //Parsing utils
 int		odd_num_quote(char *line);

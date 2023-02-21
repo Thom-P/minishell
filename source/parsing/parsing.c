@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 17:36:44 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/21 13:29:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	parse_line(char *line, char **my_envp)
 	printf("After word merge:\n");
 	ft_lstiter(tokens, _print_token);
 	printf("\n");
+	remove_space_toks(&tokens);
+	printf("After space removal:\n");
+	ft_lstiter(tokens, _print_token);
+	printf("\n");
+
 
 
 	/*

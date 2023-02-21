@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   merge_words.c                                      :+:      :+:    :+:   */
+/*   merge_words_remove_spaces.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:42:50 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 18:48:16 by tplanes          ###   ########.fr       */
+/*   Created: 2023/02/21 13:56:43 by tplanes           #+#    #+#             */
+/*   Updated: 2023/02/21 13:56:54 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,33 @@ static void	_merge_word(t_list *token, t_tok *tok_ini)
 		token -> next = token_tmp;
 	}
 	return ;
+}
+
+void	remove_space_toks(t_list **ptr_tokens)
+{
+	t_list	*token;
+	t_list	*tmp_token;
+	t_tok	*tok;
+
+	token = *ptr_tokens;
+	tok = (t_tok *)(token -> content);
+	if (tok -> type == space)
+	{
+		free_token(tok);
+		*ptr_tokens = token -> next;
+		free(token);
+		token = *ptr_tokens;
+	}
+	while (token && token -> next)
+	{
+		tok = (t_tok *)(token -> next -> content);
+		if (tok -> type == space)
+		{
+			free_token(tok);
+			tmp_token = token -> next -> next;
+			free(token -> next);
+			token -> next = tmp_token;
+		}
+		token = token -> next;
+	}
 }
