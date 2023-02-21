@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/21 16:11:33 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/21 17:22:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@
 
 enum e_redir{in, out, append, here_doc};
 
+//n_args include command
 typedef struct s_block
 {
 	enum e_redir	*redir;
 	int				n_redir;
+	int				n_arg;
 	char			**file_array;
 	char			**cmd_args;	
 }	t_block;
