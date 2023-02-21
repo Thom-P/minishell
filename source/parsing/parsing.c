@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/21 13:29:16 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/21 16:12:11 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	_print_token(void *tok);
 
-int	parse_line(char *line, char **my_envp)
+int	parse_line(char *line, t_list **ptr_exec_block, char **my_envp)
 {
 	t_list	*tokens;
 
@@ -28,31 +28,27 @@ int	parse_line(char *line, char **my_envp)
 		return (-1);
 	}
 	tokenize(line, &tokens);
-	printf("Before var exp:\n");
-	ft_lstiter(tokens, _print_token);
-	printf("\n");
+	//printf("Before var exp:\n");
+	//ft_lstiter(tokens, _print_token);
+	//printf("\n");
 	expand_variables(tokens, my_envp);
-	printf("After var exp:\n");
-	ft_lstiter(tokens, _print_token);
-	printf("\n");
+	//printf("After var exp:\n");
+	//ft_lstiter(tokens, _print_token);
+	//printf("\n");
 	merge_word_toks(tokens);
-	printf("After word merge:\n");
-	ft_lstiter(tokens, _print_token);
-	printf("\n");
+	//printf("After word merge:\n");
+	//ft_lstiter(tokens, _print_token);
+	//printf("\n");
 	remove_space_toks(&tokens);
-	printf("After space removal:\n");
-	ft_lstiter(tokens, _print_token);
-	printf("\n");
+	//printf("After space removal:\n");
+	//ft_lstiter(tokens, _print_token);
+	//printf("\n");
 
-
-
-	/*
 	if (verify_tokens(&tokens) == -1)
 		return (-1);
 	ft_lstiter(tokens, _print_token);
-	process_quotes(&tokens);
-	ft_lstiter(tokens, _print_token);
-	*/
+	printf("\n");
+	build_exec_blocks(tokens, ptr_exec_block);
 	ft_lstclear(&tokens, &free_token);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 10:53:20 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/21 16:11:11 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	main(int ac, char **av, char **envp)
 {
 	char	*line;
 	char	*prompt;
+	t_list	*exec_block;
 
 	(void) ac;
 	(void) av;
-	(void) envp;
 	prompt = "jmsh-1.0$ ";
 	_print_splash_screen();
 	while (1)
@@ -43,13 +43,14 @@ int	main(int ac, char **av, char **envp)
 			return (0); //need to return status of last cmd instead
 		}
 		add_history(line);
-		if (parse_line(line, envp) == -1) //will need to copy envp!
+		if (parse_line(line, &exec_block, envp) == -1) //will need to copy envp!
 		{
 			free(line);
 			continue ;		
 		}
 		free(line);
 		//exec_line();
+		//free_exec_block;
 	}
 	return (0);
 }
