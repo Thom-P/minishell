@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 16:10:31 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:31:33 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ static void	_print_block(void *block_tmp)
 	
 	block = (t_block *) block_tmp;
 	files = block -> files;
-	fprintf(stderr,"%i redirs:\n", block -> n_redir);
+	printf("BLOCK\n");
+	printf("%i redirs:\n", block -> n_redir);
 	i = 0;
 	while (files[i])
 	{
@@ -112,20 +113,19 @@ static void	_print_block(void *block_tmp)
 			default:
 			redir = "??";
 		}
-		fprintf(stderr,"redir: %s-file: %s\n", redir, files[i]);
+		printf("redir: %s-file: %s\n", redir, files[i]);
 		i++;
 	}
-	fprintf(stderr,"\n");
-	
+	//printf("\n");
 	cmd_args = block -> cmd_args;
-	fprintf(stderr,"%i args:\n", block -> n_arg);
+	printf("%i args:\n", block -> n_arg);
 	i = 0;
-	fprintf(stderr,"cmd+args: ");
+	printf("cmd+args: ");
 	while (cmd_args[i])
 	{
-		fprintf(stderr,"%s ", cmd_args[i]);
+		printf("%s ", cmd_args[i]);
 		i++;
 	}
-	fprintf(stderr,"\n");
+	printf("\n\n");
 	return ;
 }

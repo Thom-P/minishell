@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:00:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 15:51:51 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:26:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	build_exec_blocks(t_list *tokens, t_list **exec_blocks)
 	{
 		n_redir = get_num_redir(tokens);
 		n_arg = get_num_arg(tokens);
-		printf("n_redir=%i, n_arg=%i\n", n_redir, n_arg);
+		//printf("n_redir=%i, n_arg=%i\n", n_redir, n_arg);
 		//break ;
 		_add_exec_block(exec_blocks, &tokens, n_redir, n_arg);
 	}
