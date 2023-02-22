@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/21 17:22:16 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/22 13:42:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@
 # include "libft.h"
 # include "get_next_line.h"
 
-enum e_redir{in, out, append, here_doc};
+// here doc already converted to <(tmp_file) in parsing
+enum e_redir{in = 1, out = 2, append = 3}; 
 
-//n_args include command
+//n_arg include command
 typedef struct s_block
 {
-	enum e_redir	*redir;
 	int				n_redir;
 	int				n_arg;
-	char			**file_array;
+	enum e_redir	*redir;
+	char			**files;
 	char			**cmd_args;	
 }	t_block;
-
 
 // Parsing
 int parse_line(char *line, t_list **exec_block, char **my_envp);
@@ -44,6 +44,5 @@ int parse_line(char *line, t_list **exec_block, char **my_envp);
 
 // Utils
 void my_exit(char *msg, int status);
-
 
 #endif

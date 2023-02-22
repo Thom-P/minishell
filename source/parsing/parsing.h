@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/21 13:28:40 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:02:46 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_tok
 // Main functions
 int		tokenize(char *line, t_list **tokens);
 int		verify_tokens(t_list **tokens);
+void	build_exec_blocks(t_list *tokens, t_list **exec_blocks);
 
 //Tokenize
 void	new_token(t_list **tokens, t_tok **tok);
@@ -47,6 +48,13 @@ void	merge_word_toks(t_list *tokens);
 
 //Remove space tokens
 void	remove_space_toks(t_list **tokens);
+
+//Build exec blocks
+int		get_num_arg(t_list *token);
+int		get_num_redir(t_list *token);
+void    new_exec_block(t_list **exec_blocks, t_block **block, int n_redir, int n_arg);
+void    free_block(void *block);
+void	free_tab(char **tab);
 
 //Parsing utils
 int		odd_num_quote(char *line);
