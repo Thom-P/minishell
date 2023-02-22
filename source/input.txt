@@ -1,0 +1,5 @@
+<in1 <in2 cmd1 arg1 arg2 >>out1>out2 arg3 | cmd2 aarg1 aarg2>oout1 <iin1 | cmd3
+<in1 <in2 cmd1 arg1 arg2 >>out1>out2 arg3 | cmd2 aarg1 aarg2>oout1 <iin1 | cmd3
+<in1 <in2 cmd1 arg1 arg2 >>out1>out2 arg3 | cmd2 aarg1 aarg2>oout1 <iin1 | cmd3
+<in1 <in2 cmd1 arg1 arg2 >>out1>out2 arg3 | cmd2 aarg1 aarg2>oout1 <iin1 | cmd3
+<in1 <in2 cmd1 arg1 arg2 >>out1>out2 arg3 | cmd2 aarg1 aarg2>oout1 <iin1 | cmd3

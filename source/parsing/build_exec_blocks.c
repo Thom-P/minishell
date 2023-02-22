@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:00:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 16:26:25 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/22 16:46:59 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, int n_arg);
 
-static void	_copy_redir_data(t_block *block, t_tok *tok);
+static void	_copy_redir_data(t_block *block, t_tok *tok, char *redir);
 
 static void	_copy_arg_data(t_block *block, t_tok *tok);
 
@@ -39,6 +39,7 @@ static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, 
 	t_block	*block;
 	t_list	*token;
 	t_tok	*tok;
+	char	*redir;
 	
 	new_exec_block(exec_blocks, &block, n_redir, n_arg);
 	token = *tokens;
@@ -52,10 +53,11 @@ static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, 
 		}
 		else if (tok -> type == op)
 		{	
-			_copy_redir_data(block, tok);
+			redir = tok -> str;
 			token = token -> next;
-			if (token)
-				token = token -> next;
+			tok = (t_tok *)token -> content;
+			_copy_redir_data(block, tok, redir);
+			token = token -> next;
 			continue ;
 		}
 		else
@@ -65,7 +67,7 @@ static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, 
 	*tokens = token;
 }
 
-static void	_copy_redir_data(t_block *block, t_tok *tok)
+static void	_copy_redir_data(t_block *block, t_tok *tok, char *redir)
 {
 	char	**files;
 	int		i;
@@ -74,15 +76,15 @@ static void	_copy_redir_data(t_block *block, t_tok *tok)
 	i = 0;
 	while (files[i])
 		i++;
-	files[i] = ft_strdup(tok -> str);
-	if (files[i] == NULL)
-		my_exit("Malloc error in copy_redir_data\n", EXIT_FAILURE);
-	if (*(tok -> str) == '<')
+	if (*redir == '<')
 		block -> redir[i] = in;
-	else if (tok -> str[0] == '>' && tok -> str[1] == '>')
+	else if (redir[0] == '>' && redir[1] == '>')
 		block -> redir[i] = append;
 	else
 		block -> redir[i] = out;
+	files[i] = ft_strdup(tok -> str);
+	if (files[i] == NULL)
+		my_exit("Malloc error in copy_redir_data\n", EXIT_FAILURE);
 	return ;
 }
 
