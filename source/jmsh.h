@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 16:01:08 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/24 17:15:13 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	exec_line(t_list *exec_blocks, char **envp);
 void	my_exit(char *msg, int status);
 void	free_wd_array(char **arr);
 void    free_block(void *tmp_block);
+void	print_jmsh_logo(void);
 
 // For debug
 void	_print_block(void *block_tmp);

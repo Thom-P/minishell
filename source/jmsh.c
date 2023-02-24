@@ -6,13 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 15:50:32 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/24 17:14:36 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
-static void _print_splash_screen();
+//static void _print_splash_screen();
 
 int	main(int ac, char **av, char **envp)
 {
@@ -24,7 +24,8 @@ int	main(int ac, char **av, char **envp)
 	(void) av;
 	exec_block = NULL;
 	prompt = "jmsh-1.0$ ";
-	_print_splash_screen();
+	print_jmsh_logo();
+	//_print_splash_screen();
 	while (1)
 	{
 		line = readline(prompt);
@@ -56,7 +57,7 @@ int	main(int ac, char **av, char **envp)
 	return (0);
 }
 
-static void _print_splash_screen()
+/*static void _print_splash_screen()
 {
 	int		fd;
 	char	*line;
@@ -71,4 +72,4 @@ static void _print_splash_screen()
 		free(line);
 	}
 	return ;
-}
+}*/
