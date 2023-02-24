@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:47:54 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 16:03:32 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:00:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,8 @@ void    free_block(void *tmp_block)
 
 	block = (t_block *)tmp_block;
 	free(block -> redir);
-	free_tab(block -> files);
-	free_tab(block -> cmd_args);
+	free_wd_array(block -> files);
+	free_wd_array(block -> cmd_args);
 	free((t_tok *)block);
-	return ;
-}
-
-void	free_tab(char **tab)
-{
-	char	**tab_cpy;
-
-	tab_cpy = tab;
-	if (tab == NULL)
-		return ;
-	while (*tab)
-	{
-		free(*tab);
-		tab++;
-	}
-	free(tab_cpy);
 	return ;
 }

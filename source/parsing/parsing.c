@@ -6,15 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 15:16:33 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/24 15:47:06 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 static void	_print_token(void *tok);
-
-static void	_print_block(void *block);
 
 int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 {
@@ -50,10 +48,7 @@ int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 	ft_lstiter(tokens, &_print_token);
 	printf("\n\n");
 	build_exec_blocks(tokens, exec_blocks);
-	ft_lstiter(*exec_blocks, &_print_block);
-	printf("\n");
 	ft_lstclear(&tokens, &free_token);
-	ft_lstclear(exec_blocks, &free_block);
 	return (0);
 }
 
@@ -80,51 +75,5 @@ static void	_print_token(void *tok)
 		type = "??";
 	}
 	printf("(%s:%s:%i) ", type, ((t_tok *)tok)-> str, ((t_tok *)tok)-> len);
-	return ;
-}
-
-// for debug only
-static void	_print_block(void *block_tmp)
-{
-	t_block	*block;
-	char	**files;
-	char	**cmd_args;
-	char	*redir;
-	int	i;	
-	
-	block = (t_block *) block_tmp;
-	files = block -> files;
-	printf("BLOCK\n");
-	printf("%i redirs:\n", block -> n_redir);
-	i = 0;
-	while (files[i])
-	{
-		switch(block -> redir[i])
-		{
-			case in:
-			redir = "in";
-			break;
-			case out:
-			redir = "out";
-			break;
-			case append:
-			redir = "append";
-			break;
-			default:
-			redir = "??";
-		}
-		printf("%s: '%s'\n", redir, files[i]);
-		i++;
-	}
-	//printf("\n");
-	cmd_args = block -> cmd_args;
-	printf("%i args:\n", block -> n_arg);
-	i = 0;
-	while (cmd_args[i])
-	{
-		printf("%s ", cmd_args[i]);
-		i++;
-	}
-	printf("\n\n");
 	return ;
 }

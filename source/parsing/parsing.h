@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 16:02:46 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:00:31 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,14 @@ int		is_last_tok_null_wd(t_list **tokens);
 void	expand_variables(t_list *tokens, char **my_envp);
 char	*get_var_from_envp(char *var_name, int var_len, char **my_envp);
 
-//Merge words
+//Merge words and remove space tokens
 void	merge_word_toks(t_list *tokens);
-
-//Remove space tokens
 void	remove_space_toks(t_list **tokens);
 
 //Build exec blocks
 int		get_num_arg(t_list *token);
 int		get_num_redir(t_list *token);
 void    new_exec_block(t_list **exec_blocks, t_block **block, int n_redir, int n_arg);
-void    free_block(void *block);
-void	free_tab(char **tab);
 
 //Parsing utils
 int		odd_num_quote(char *line);
