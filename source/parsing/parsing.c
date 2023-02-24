@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 16:31:33 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/24 15:16:33 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,13 @@ static void	_print_block(void *block_tmp)
 			default:
 			redir = "??";
 		}
-		printf("redir: %s-file: %s\n", redir, files[i]);
+		printf("%s: '%s'\n", redir, files[i]);
 		i++;
 	}
 	//printf("\n");
 	cmd_args = block -> cmd_args;
 	printf("%i args:\n", block -> n_arg);
 	i = 0;
-	printf("cmd+args: ");
 	while (cmd_args[i])
 	{
 		printf("%s ", cmd_args[i]);

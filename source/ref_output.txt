@@ -1,0 +1,160 @@
+      _                        __  __ _ ____  _   _ _____ _     _     
+     | | ___  __ _ _ __       |  \/  (_) ___|| | | | ____| |   | |    
+  _  | |/ _ \/ _` | '_ \ _____| |\/| | \___ \| |_| |  _| | |   | |    
+ | |_| |  __/ (_| | | | |_____| |  | | |___) |  _  | |___| |___| |___ 
+  \___/ \___|\__,_|_| |_|     |_|  |_|_|____/|_| |_|_____|_____|_____|
+                                                                      
+
+
+Parsing: <
+jmsh: syntax error near unexpected token `newline'
+Parsing: >
+jmsh: syntax error near unexpected token `newline'
+Parsing: <<
+jmsh: syntax error near unexpected token `newline'
+Parsing: >>
+jmsh: syntax error near unexpected token `newline'
+Parsing: |
+jmsh: syntax error near unexpected token `|'
+Parsing: < >
+jmsh: syntax error near unexpected token `>'
+Parsing: < <
+jmsh: syntax error near unexpected token `<'
+Parsing: < >>
+jmsh: syntax error near unexpected token `>>'
+Parsing: < <<
+jmsh: syntax error near unexpected token `<<'
+Parsing: < |
+jmsh: syntax error near unexpected token `|'
+Parsing: | |
+jmsh: syntax error near unexpected token `|'
+Parsing: ||
+jmsh: syntax error near unexpected token `|'
+Parsing: ""
+(wd::0) 
+
+BLOCK
+0 redirs:
+1 args:
+ 
+
+
+Parsing: cmd
+(wd:cmd:3) 
+
+BLOCK
+0 redirs:
+1 args:
+cmd 
+
+
+Parsing: cmd1 | cmd2 | cmd3
+(wd:cmd1:4) (op:|:1) (wd:cmd2:4) (op:|:1) (wd:cmd3:4) 
+
+BLOCK
+0 redirs:
+1 args:
+cmd1 
+
+BLOCK
+0 redirs:
+1 args:
+cmd2 
+
+BLOCK
+0 redirs:
+1 args:
+cmd3 
+
+
+Parsing: cmd1 a1 "a2" a3 | cmd2 'b1 b2'    b3| cmd3      c1
+(wd:cmd1:4) (wd:a1:2) (wd:a2:2) (wd:a3:2) (op:|:1) (wd:cmd2:4) (wd:b1 b2:5) (wd:b3:2) (op:|:1) (wd:cmd3:4) (wd:c1:2) 
+
+BLOCK
+0 redirs:
+4 args:
+cmd1 a1 a2 a3 
+
+BLOCK
+0 redirs:
+3 args:
+cmd2 b1 b2 b3 
+
+BLOCK
+0 redirs:
+2 args:
+cmd3 c1 
+
+
+Parsing: cmd1 <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      c1
+(wd:cmd1:4) (op:<:1) (wd:i1:2) (wd:a1:2) (op:>>:2) (wd:o2:2) (wd:a2:2) (op:<:1) (wd:i3:2) (wd:a3:2) (op:|:1) (wd:cmd2:4) (wd:b1:2) (op:>>:2) (wd:oo1:3) (wd:b2:2) (op:<:1) (wd:ii1:3) (wd:b3:2) (op:|:1) (wd:cmd3:4) (wd:c1:2) 
+
+BLOCK
+3 redirs:
+in: 'i1'
+append: 'o2'
+in: 'i3'
+4 args:
+cmd1 a1 a2 a3 
+
+BLOCK
+2 redirs:
+append: 'oo1'
+in: 'ii1'
+4 args:
+cmd2 b1 b2 b3 
+
+BLOCK
+0 redirs:
+2 args:
+cmd3 c1 
+
+
+Parsing: <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      c1
+(op:<:1) (wd:i1:2) (wd:a1:2) (op:>>:2) (wd:o2:2) (wd:a2:2) (op:<:1) (wd:i3:2) (wd:a3:2) (op:|:1) (wd:cmd2:4) (wd:b1:2) (op:>>:2) (wd:oo1:3) (wd:b2:2) (op:<:1) (wd:ii1:3) (wd:b3:2) (op:|:1) (wd:cmd3:4) (wd:c1:2) 
+
+BLOCK
+3 redirs:
+in: 'i1'
+append: 'o2'
+in: 'i3'
+3 args:
+a1 a2 a3 
+
+BLOCK
+2 redirs:
+append: 'oo1'
+in: 'ii1'
+4 args:
+cmd2 b1 b2 b3 
+
+BLOCK
+0 redirs:
+2 args:
+cmd3 c1 
+
+
+Parsing: <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      "c1$" '$USER' $a"$USER"
+(op:<:1) (wd:i1:2) (wd:a1:2) (op:>>:2) (wd:o2:2) (wd:a2:2) (op:<:1) (wd:i3:2) (wd:a3:2) (op:|:1) (wd:cmd2:4) (wd:b1:2) (op:>>:2) (wd:oo1:3) (wd:b2:2) (op:<:1) (wd:ii1:3) (wd:b3:2) (op:|:1) (wd:cmd3:4) (wd:c1$:3) (wd:$USER:5) (wd:totothomas:10) 
+
+BLOCK
+3 redirs:
+in: 'i1'
+append: 'o2'
+in: 'i3'
+3 args:
+a1 a2 a3 
+
+BLOCK
+2 redirs:
+append: 'oo1'
+in: 'ii1'
+4 args:
+cmd2 b1 b2 b3 
+
+BLOCK
+0 redirs:
+4 args:
+cmd3 c1$ $USER totothomas 
+
+

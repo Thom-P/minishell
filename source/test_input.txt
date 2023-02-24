@@ -1,0 +1,19 @@
+<
+>
+<<
+>>
+|
+< >
+< <
+< >>
+< <<
+< |
+| |
+||
+""
+cmd
+cmd1 | cmd2 | cmd3
+cmd1 a1 "a2" a3 | cmd2 'b1 b2'    b3| cmd3      c1
+cmd1 <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      c1
+<i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      c1
+<i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      "c1$" '$USER' $a"$USER"
