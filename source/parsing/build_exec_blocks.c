@@ -6,13 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:00:19 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 15:39:27 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:39:43 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, int n_arg);
+static void	_add_block(t_list **ex_bks, t_list **tokens, int n_redi, int n_arg);
 
 static void	_copy_redir_data(t_block *block, t_tok *tok, char *redir);
 
@@ -21,24 +21,25 @@ static void	_copy_arg_data(t_block *block, t_tok *tok);
 void	build_exec_blocks(t_list *tokens, t_list **exec_blocks)
 {
 	int	n_redir;
-	int n_arg;
+	int	n_arg;
 
 	while (tokens)
 	{
 		n_redir = get_num_redir(tokens);
 		n_arg = get_num_arg(tokens);
-		_add_exec_block(exec_blocks, &tokens, n_redir, n_arg);
+		_add_block(exec_blocks, &tokens, n_redir, n_arg);
 	}
 	return ;
 }
 
-static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, int n_arg)
+/*
+static void	_add_block(t_list **ex_bks, t_list **tokens, int n_redir, int n_arg)
 {
 	t_block	*block;
 	t_list	*token;
 	t_tok	*tok;
 	char	*redir;
-	
+
 	new_exec_block(exec_blocks, &block, n_redir, n_arg);
 	token = *tokens;
 	while (token)
@@ -63,6 +64,35 @@ static void	_add_exec_block(t_list **exec_blocks, t_list **tokens, int n_redir, 
 		token = token -> next;
 	}
 	*tokens = token;
+}*/
+
+static void	_add_block(t_list **ex_bks, t_list **tokens, int n_redir, int n_arg)
+{
+	t_block	*block;
+	t_tok	*tok;
+	char	*redir;
+
+	new_exec_block(ex_bks, &block, n_redir, n_arg);
+	while (*tokens)
+	{
+		tok = (t_tok *)(*tokens)-> content;
+		if (tok -> type == op && *(tok -> str) == '|')
+		{	
+			(*tokens) = (*tokens)-> next;
+			break ;
+		}
+		else if (tok -> type == op)
+		{	
+			redir = tok -> str;
+			(*tokens) = (*tokens)-> next;
+			tok = (t_tok *)(*tokens)-> content;
+			_copy_redir_data(block, tok, redir);
+		}
+		else
+			_copy_arg_data(block, tok);
+		(*tokens) = (*tokens)-> next;
+	}
+	return ;
 }
 
 static void	_copy_redir_data(t_block *block, t_tok *tok, char *redir)

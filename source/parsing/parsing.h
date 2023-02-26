@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/26 15:54:46 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:25:06 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	remove_space_toks(t_list **tokens);
 //Build exec blocks
 int		get_num_arg(t_list *token);
 int		get_num_redir(t_list *token);
-void    new_exec_block(t_list **exec_blocks, t_block **block, int n_redir, int n_arg);
+void	new_exec_block(t_list **ex_bks, t_block **bk, int n_redir, int n_arg);
 
 //Parsing utils
 int		odd_num_quote(char *line);

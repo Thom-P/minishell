@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:47:54 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/26 17:10:33 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:23:39 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	_remove_heredoc_files(char **files);
 
-void    new_exec_block(t_list **exec_blocks, t_block **ptr_block, int n_redir, int n_arg)
+void	new_exec_block(t_list **ex_bks, t_block **p_bk, int n_redir, int n_arg)
 {
-	t_list  *exec_block;
+	t_list	*exec_block;
 	t_block	*block;
 
 	block = (t_block *)malloc(sizeof(t_block));
 	if (block == NULL)
 		my_exit("Malloc error in new_exec_block\n", EXIT_FAILURE);
-	*ptr_block = block;
+	*p_bk = block;
 	block -> n_redir = n_redir;
 	block -> n_arg = n_arg;
 	block -> redir = (enum e_redir *)ft_calloc(n_redir, sizeof(enum e_redir));
@@ -37,13 +37,13 @@ void    new_exec_block(t_list **exec_blocks, t_block **ptr_block, int n_redir, i
 	exec_block = ft_lstnew((void *)block);
 	if (exec_block == NULL)
 		my_exit("Malloc error in new_exec_block: lst_new\n", EXIT_FAILURE);
-	ft_lstadd_back(exec_blocks, exec_block);
+	ft_lstadd_back(ex_bks, exec_block);
 	return ;
 }
 
-void    free_block(void *tmp_block)
+void	free_block(void *tmp_block)
 {
-	t_block *block;
+	t_block	*block;
 
 	block = (t_block *)tmp_block;
 	free(block -> redir);
@@ -54,7 +54,7 @@ void    free_block(void *tmp_block)
 	return ;
 }
 
-static void _remove_heredoc_files(char **files)
+static void	_remove_heredoc_files(char **files)
 {
 	if (files == NULL)
 		return ;

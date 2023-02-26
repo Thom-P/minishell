@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 10:20:36 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/22 13:31:19 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:20:00 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	get_num_redir(t_list *token)
 	{
 		tok = (t_tok *)token -> content;
 		if (tok -> type == op && *(tok -> str) == '|')
-			break;
+			break ;
 		else if (tok -> type == op)
 			num += 1;
 		token = token -> next;
@@ -75,7 +75,7 @@ int	get_num_arg(t_list *token)
 	{
 		tok = (t_tok *)token -> content;
 		if (tok -> type == op && *(tok -> str) == '|')
-			break;
+			break ;
 		else if (tok -> type == op)
 		{
 			token = token -> next;
