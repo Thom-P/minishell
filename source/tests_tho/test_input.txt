@@ -17,3 +17,20 @@ cmd1 a1 "a2" a3 | cmd2 'b1 b2'    b3| cmd3      c1
 cmd1 <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      c1
 <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      c1
 <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      "c1$" '$USER' $a"$USER"
+cmd <<eof1 arg1 <in1 >out1 <<eof2 | cmd2 <<eof3
+aa
+bb
+eof1
+cc
+dd
+eof2
+ee
+ff
+eof3
+cmd <<eof1 arg1 <in1 >out1 <<eof2
+aa
+bb
+eof1
+cc
+dd
+eof2

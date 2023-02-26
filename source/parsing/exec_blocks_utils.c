@@ -6,11 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:47:54 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 16:00:16 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:10:33 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static void	_remove_heredoc_files(char **files);
 
 void    new_exec_block(t_list **exec_blocks, t_block **ptr_block, int n_redir, int n_arg)
 {
@@ -45,8 +47,22 @@ void    free_block(void *tmp_block)
 
 	block = (t_block *)tmp_block;
 	free(block -> redir);
+	_remove_heredoc_files(block -> files);
 	free_wd_array(block -> files);
 	free_wd_array(block -> cmd_args);
 	free((t_tok *)block);
+	return ;
+}
+
+static void _remove_heredoc_files(char **files)
+{
+	if (files == NULL)
+		return ;
+	while (*files)
+	{
+		if (ft_strncmp(*files, ".tmp_hdoc_", 9) == 0)
+			unlink(*files);
+		files++;
+	}
 	return ;
 }

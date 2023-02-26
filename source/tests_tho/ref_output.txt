@@ -158,3 +158,35 @@ BLOCK
 cmd3 c1$ $USER totothomas 
 
 
+Parsing: cmd <<eof1 arg1 <in1 >out1 <<eof2 | cmd2 <<eof3
+(wd:cmd:3) (op:<:1) (wd:.tmp_hdoc_0:11) (wd:arg1:4) (op:<:1) (wd:in1:3) (op:>:1) (wd:out1:4) (op:<:1) (wd:.tmp_hdoc_1:11) (op:|:1) (wd:cmd2:4) (op:<:1) (wd:.tmp_hdoc_2:11) 
+
+BLOCK
+4 redirs:
+in: '.tmp_hdoc_0'
+in: 'in1'
+out: 'out1'
+in: '.tmp_hdoc_1'
+2 args:
+cmd arg1 
+
+BLOCK
+1 redirs:
+in: '.tmp_hdoc_2'
+1 args:
+cmd2 
+
+
+Parsing: cmd <<eof1 arg1 <in1 >out1 <<eof2
+(wd:cmd:3) (op:<:1) (wd:.tmp_hdoc_0:11) (wd:arg1:4) (op:<:1) (wd:in1:3) (op:>:1) (wd:out1:4) (op:<:1) (wd:.tmp_hdoc_1:11) 
+
+BLOCK
+4 redirs:
+in: '.tmp_hdoc_0'
+in: 'in1'
+out: 'out1'
+in: '.tmp_hdoc_1'
+2 args:
+cmd arg1 
+
+
