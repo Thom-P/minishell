@@ -1,0 +1,46 @@
+	/*
+	TODO: exec_blocks est une liste chainee de structures t_block *block qui contiennent les actions a effectuer entre chaque pipe 
+	(redirections et commande).
+	Si exec_blocks ne contient au'un seul block, alors c'est une commande simple (pas de pipes).
+	Si exec_blocks contient 'k' block, alors il y aura 'k-1' pipe.
+
+	Pour acceder aux action du block:
+	t_block *block;
+	block = (t_block *)(exec_blocks -> content);
+	
+	block -> n_redir: nombre de redirections, <, >, ou >> (les here docs sont geres au parsing et convertis en <)
+	block -> redir: tableau de int (n_redir elements) construit avec une enum pour indiquer le type de redirection 
+	(in pour <, out pour >, et append pour >>)
+	ex: pour checker si la 3eme redirection est un append, on peut faire:
+	if (block -> redir[2] == append)
+	Pour chaque redirection, un nom de fichier est trouvable dans le tableau de mots:
+	block -> files
+	ex: pour la 3eme redir, le nom de fichier correspondant est block -> files[2]
+
+	Enfin:
+	block -> n_arg: nombre d'arguments (cmd arg1 arg2 arg3 =  4 arguments en incluant la commande)
+	block -> cmd_args est un tableau de mot contenant la commande (sans le path) et ses arguments.
+	
+	D'apres la doc du bash, les actions a effectuer sont les suivantes:
+
+	Cas particulier, si la commande est une commande simple (pas de pipe, block unique), i.e. si exec_blocks -> next = NULL
+	ET si la commande est un builtin, alors le builtin est directement appelee (apres gestion des redirections), sans creer de processus child.
+
+	Dans tous les autres cas (commande simple non-builtin ou pipeline), le workflow est:
+	- Creer un process child
+	- Appliquer les redirections dans l'ordre du tableau
+	- Si la commande ne contient pas de slash ('/'): 
+		. Si le nom de commande correspond a un builtin, lancer le builtin
+		. Sinon, chercher avec le PATH
+			-> si trouve une commande: la lancer avec execve
+			-> sinon: message d'erreur (jmsh: <wrong_command>: command not found) et exit avec status 127.
+	- Si la commande contient un slash: lancer la commande avec execve.
+	- Si execve renvoie une erreur:
+		. normalement doit tenter d'executer la commande comme un script (pour l'instant je suggere qu'on n'implemente pas)
+		. message d'erreur (lequel?) et exit status 126 
+
+	*/
+
+
+In a pipeline of commands, each command should be executed in a separate process (execve in child, or builtin fct in child), which amounts to executing them in a copy of the current shell (subshell). Simple (non pipelined) regular (non-builtin) commands seem to also be executed in a child (subshell) environment. However, simple builtin commands should be started from the current process.
+
