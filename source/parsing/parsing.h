@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 16:00:31 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 15:54:46 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_tok
 // Main functions
 int		tokenize(char *line, t_list **tokens);
 int		verify_tokens(t_list **tokens);
+void	process_heredocs(t_list *tokens);
 void	build_exec_blocks(t_list *tokens, t_list **exec_blocks);
 
 //Tokenize

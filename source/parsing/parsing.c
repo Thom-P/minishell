@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/24 15:47:06 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/26 15:27:24 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 	//printf("\n");
 	if (verify_tokens(&tokens) == -1)
 		return (-1);
+	process_heredocs(tokens);
 	ft_lstiter(tokens, &_print_token);
 	printf("\n\n");
 	build_exec_blocks(tokens, exec_blocks);
