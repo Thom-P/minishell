@@ -1,0 +1,108 @@
+some random potentially useful info from discord:
+
+Vous avez trouve un moyen de pas afficher ^\ quand on fait un control + \? Quand je catch le sigquit il m'affiche toujours ca, et j'ai teste different trucs j'arrive pas a faire qu'il ne s'affiche pas
+lgyger, Khonvoum
+ —
+01/07/2022 11:30 AM
+Echoctl avec Termios bloque ce genre de symbol
+Et avec ctrl \ tu peux juste faire un SIGIGN pas besoin de faire une fonction
+Après faut mettre le terminal enfin «‘affichage à jour avec tcs set attribut je crois
+
+Sinon t'as trouve une utilité pour isatty, ttyname et ttyslot?
+lgyger, Khonvoum
+ —
+01/07/2022 12:07 PM
+Nop c’est comme pour les dir fonctions
+Fastest msegrans
+ —
+01/07/2022 12:08 PM
+Je les utilise pour le path moi le opendir etc.
+et pour le *
+lgyger, Khonvoum
+ —
+01/07/2022 12:17 PM
+C’est vrai que pour les wilds cards cela peut être intéressant mais comme on avait envie de se tirer une balle quand la partie obligatoire a été finie faudra qu’on y repasse
+Fastest msegrans
+ —
+01/07/2022 12:24 PM
+J'ai trouve l'utilite de isatty
+Pour tcgetattr tu dois lui passer un fd, mais tu dois verifier avant que c'est bien un terminal
+lgyger, Khonvoum
+ —
+01/07/2022 12:27 PM
+Je suppose que cela peut avoir son utilité dans un process different
+Car sinon le fd sera STDOUT FILENO
+Fastest msegrans
+ —
+01/07/2022 12:27 PM
+Faut check stderr, stdout et stdin
+Parce que si je lance le minishell avec ca: ./minishell > out
+ton truc va crash
+
+
+
+quelqu' un a la liste des tests de la defense?
+tkondrac, King of CTF
+ — 
+02/16/2022 7:42 PM
+Je l’ai pas mais je me souviens d’un des compliqués:  il faut faire marcher 
+
+cat | cat | ls 
+
+
+
+Hello 🙂
+Question au sujet du ctrl-c est-ce qu'il faut remove le ^C qui print dans le terminal quand le signal est catch ?
+dthalman
+ —
+03/18/2022 9:17 AM
+oui, il ne faut pas voir le ^C dans le terminal.
+
+alors tu le traites dans ton code. regarde un peu ce que tu peux faire avec la fonction suivante pour résoudre ce problème
+
+tcsetattr(int, int, const struct termios *);
+
+
+Petite question, dans signal, comment discriminer si un ctrl-c est effectue dans le cas par ex. d'un cat en attente parce que sans parametre ou dans le cas d'une ligne vide ou non confirmee?
+lbelet
+ —
+09/16/2022 3:00 PM
+Nous, on a fait 2 types de signaux ;-)
+tpinto-m of the Night's Watch 🐺
+ —
+09/16/2022 3:01 PM
+on a aussi fait 2 type de signaux (parent/enfant)
+
+
+
+
+aprahin, Khonvoum
+ — 
+12/16/2022 5:15 PM
+Tes child process dupliquent toutes les variables de ton parent process, y compris une variable environnement que tu peux créer toi-même
+lskraber
+ — 
+12/16/2022 5:35 PM
+Ok, du coup en reprenant mon example d'avant.
+on va dire que j'ai une variable "char **envp_cpy" qui est une copy de envp où en plus j'ai rajouter A="B".
+Si je rentre dans mon minishell "bash test.sh", la conversion de A en B se fera automatiquement?
+J'ai un peu de mal a comprendre comment passer d'une copie de envp au remplacement de $A a B
+aprahin, Khonvoum
+ — 
+12/16/2022 5:41 PM
+execve prend comme dernier argument un environnement
+lskraber
+ — 
+12/16/2022 5:42 PM
+Ah, ok merci ^^'.
+Ça me solucione tout x)
+
+
+Hello, quand je fais un ctrl+C, ça me met un retour à la ligne avant la nouvelle ligne de prompt, je sèche. si quelqu’un peut m'aider.
+Merci
+Pour faire suite a ma question. Voici la réponse. Merci tgrivel et Aprahin.
+
+rl_replace_line("", 0);
+dans le signal handler
+
+
