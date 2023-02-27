@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/27 11:59:22 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/27 12:19:10 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	_print_block(void *block_tmp)
 	char	**files;
 	char	**cmd_args;
 	char	*redir;
-	int	i;	
-	
+	int		i;	
+
 	block = (t_block *) block_tmp;
 	files = block -> files;
 	printf("BLOCK\n");
@@ -52,18 +52,18 @@ void	_print_block(void *block_tmp)
 	i = 0;
 	while (files[i])
 	{
-		switch(block -> redir[i])
+		switch (block -> redir[i])
 		{
 			case in:
 			redir = "in";
-			break;
+			break ;
 			case out:
 			redir = "out";
-			break;
+			break ;
 			case append:
 			redir = "append";
-			break;
-			default:
+			break ;
+			default :
 			redir = "??";
 		}
 		printf("%s: '%s'\n", redir, files[i]);
@@ -99,18 +99,18 @@ char	**copy_envp(char **envp)
 	return (my_envp);
 }
 
-void print_jmsh_logo()
+void	print_jmsh_logo(void)
 {
 	char	*logo;
 
-	logo = \
-	"      _                        __  __ _ ____  _          _ _ \n"
-	"     | | ___  __ _ _ __       |  \\/  (_) ___|| |__   ___| | |\n"
-	"  _  | |/ _ \\/ _` | '_ \\ _____| |\\/| | \\___ \\| '_ \\ / _ \\ | |\n"
-	" | |_| |  __/ (_| | | | |_____| |  | | |___) | | | |  __/ | |\n"
-	"  \\___/ \\___|\\__,_|_| |_|     |_|  |_|_|____/|_| |_|\\___|_|_|\n"
-	"\n"
-	"\n";
+	logo = "\n"
+		"      _                        __  __ _ ____  _          _ _ \n"
+		"     | | ___  __ _ _ __       |  \\/  (_) ___|| |__   ___| | |\n"
+		"  _  | |/ _ \\/ _` | '_ \\ _____| |\\/| | \\___ \\| '_ \\ / _ \\ | |\n"
+		" | |_| |  __/ (_| | | | |_____| |  | | |___) | | | |  __/ | |\n"
+		"  \\___/ \\___|\\__,_|_| |_|     |_|  |_|_|____/|_| |_|\\___|_|_|\n"
+		"\n"
+		"\n";
 	printf("%s\n", logo);
 	return ;
 }
