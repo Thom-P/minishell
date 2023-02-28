@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:08:02 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:04:56 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 16:35:11 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 static void	_add_env(char *arg, char ***ptr_my_envp);
 
-static int _repl_if_already_def(char *arg, int ind_equal, char **my_envp);
+static int	_repl_if_already_def(char *arg, int ind_equal, char **my_envp);
 
+//static void	_print_export(char **my_envp);
+
+//export without option and name said to be undefined in one man, and just print values in other
 int	export(int ac, char **av, char ***ptr_my_envp)
 {
 	int	ind_equal;
@@ -24,7 +27,8 @@ int	export(int ac, char **av, char ***ptr_my_envp)
 	exit_status = EXIT_SUCCESS;
 	if (ac == 1)
 	{
-		//print_export();
+		//_print_export(*ptr_my_envp);
+		env(ac, av, *ptr_my_envp);
 		return (EXIT_SUCCESS);
 	}
 	while (*av)	
@@ -87,3 +91,8 @@ static int _repl_if_already_def(char *arg, int ind_equal, char **my_envp)
 	}
 	return (0);
 }
+
+/*static void	_print_export(char **my_envp);
+{
+	
+}*/
