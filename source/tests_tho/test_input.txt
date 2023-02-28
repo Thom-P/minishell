@@ -34,3 +34,5 @@ eof1
 cc
 dd
 eof2
+exit
+

@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 14:16:18 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:39:01 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int ac, char **av, char **envp)
 		}
 		if (ft_strncmp(line, "exit", 5) == 0) //temporary hack to avoid writing builtin exit
 		{
+			free_wd_array(my_envp);
 			free(line);
 			return (0); //need to return status of last cmd instead
 		}

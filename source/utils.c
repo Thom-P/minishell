@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 14:51:40 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:47:28 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,13 @@ char	**copy_envp(char **envp)
 	if (my_envp == NULL)
 		my_exit("Malloc error in copy_envp\n", EXIT_FAILURE);
 	size = 0;
-	while (*envp)
-		my_envp[size++] = *envp++;
+	while (envp[size])
+	{	
+		my_envp[size] = ft_strdup(envp[size]);
+		if (my_envp[size] == NULL)
+			my_exit("Malloc error in copy_envp\n", EXIT_FAILURE);
+		size++;
+	}
 	my_envp[size] = NULL;
 	return (my_envp);
 }
