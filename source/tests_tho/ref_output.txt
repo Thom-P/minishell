@@ -191,3 +191,12 @@ in: '.tmp_hdoc_1'
 cmd arg1 
 
 
+Parsing: exit
+(wd:exit:4) 
+
+BLOCK
+0 redirs:
+1 args:
+exit 
+
+

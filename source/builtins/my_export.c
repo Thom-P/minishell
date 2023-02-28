@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 13:08:02 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:35:11 by tplanes          ###   ########.fr       */
+/*   Created: 2023/02/28 16:41:42 by tplanes           #+#    #+#             */
+/*   Updated: 2023/02/28 16:41:45 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	_repl_if_already_def(char *arg, int ind_equal, char **my_envp);
 //static void	_print_export(char **my_envp);
 
 //export without option and name said to be undefined in one man, and just print values in other
-int	export(int ac, char **av, char ***ptr_my_envp)
+int	my_export(int ac, char **av, char ***ptr_my_envp)
 {
 	int	ind_equal;
 	int	exit_status;
@@ -28,7 +28,7 @@ int	export(int ac, char **av, char ***ptr_my_envp)
 	if (ac == 1)
 	{
 		//_print_export(*ptr_my_envp);
-		env(ac, av, *ptr_my_envp);
+		my_env(ac, av, *ptr_my_envp);
 		return (EXIT_SUCCESS);
 	}
 	while (*av)	
