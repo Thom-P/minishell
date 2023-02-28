@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/27 12:00:04 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 11:09:03 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ typedef struct s_block
 int		parse_line(char *line, t_list **exec_block, char **my_envp);
 
 // Execution
-void	exec_line(t_list *exec_blocks, char **envp);
+void	exec_line(t_list *exec_blocks, char **my_envp);
+
+// Builtins
+int		env(int ac, char **av, char **my_envp);
 
 // Utils
 void	my_exit(char *msg, int status);

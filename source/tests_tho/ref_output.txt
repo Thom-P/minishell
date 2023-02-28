@@ -136,7 +136,7 @@ cmd3 c1
 
 
 Parsing: <i1 a1 >>o2 "a2" <i3  a3 | cmd2 b1 >>oo1 b2<ii1    b3| cmd3      "c1$" '$USER' $a"$USER"
-(op:<:1) (wd:i1:2) (wd:a1:2) (op:>>:2) (wd:o2:2) (wd:a2:2) (op:<:1) (wd:i3:2) (wd:a3:2) (op:|:1) (wd:cmd2:4) (wd:b1:2) (op:>>:2) (wd:oo1:3) (wd:b2:2) (op:<:1) (wd:ii1:3) (wd:b3:2) (op:|:1) (wd:cmd3:4) (wd:c1$:3) (wd:$USER:5) (wd:totothomas:10) 
+(op:<:1) (wd:i1:2) (wd:a1:2) (op:>>:2) (wd:o2:2) (wd:a2:2) (op:<:1) (wd:i3:2) (wd:a3:2) (op:|:1) (wd:cmd2:4) (wd:b1:2) (op:>>:2) (wd:oo1:3) (wd:b2:2) (op:<:1) (wd:ii1:3) (wd:b3:2) (op:|:1) (wd:cmd3:4) (wd:c1$:3) (wd:$USER:5) (wd:tototplanes:11) 
 
 BLOCK
 3 redirs:
@@ -156,7 +156,7 @@ cmd2 b1 b2 b3
 BLOCK
 0 redirs:
 4 args:
-cmd3 c1$ $USER totothomas 
+cmd3 c1$ $USER tototplanes 
 
 
 Parsing: cmd <<eof1 arg1 <in1 >out1 <<eof2 | cmd2 <<eof3
