@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/27 12:01:54 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:16:18 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av, char **envp)
 			continue ;		
 		}
 		free(line);
-		exec_line(exec_block, my_envp);
+		exec_line(exec_block, &my_envp);
 		ft_lstclear(&exec_block, &free_block);
 	}
 	return (0);

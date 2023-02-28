@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 11:09:03 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:08:27 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,21 @@ typedef struct s_block
 int		parse_line(char *line, t_list **exec_block, char **my_envp);
 
 // Execution
-void	exec_line(t_list *exec_blocks, char **my_envp);
+void	exec_line(t_list *exec_blocks, char ***ptr_my_envp);
 
 // Builtins
 int		env(int ac, char **av, char **my_envp);
+int		export(int ac, char **av, char ***ptr_my_envp);
+
+// Builtin utils
+int		get_env_size(char **my_envp);
 
 // Utils
 void	my_exit(char *msg, int status);
 void	free_wd_array(char **arr);
 void    free_block(void *tmp_block);
 char	**copy_envp(char **envp);
+int		ind_in_set(char c, char *set);
 void	print_jmsh_logo(void);
 
 // For debug

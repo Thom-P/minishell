@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 17:51:30 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/26 17:25:06 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:53:13 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ void	new_exec_block(t_list **ex_bks, t_block **bk, int n_redir, int n_arg);
 int		odd_num_quote(char *line);
 int		is_space(char c);
 int		is_only_space(char *line);
-int		ind_in_set(char c, char *set);
 
 #endif

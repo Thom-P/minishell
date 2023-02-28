@@ -1,4 +1,3 @@
-we need to prevent export of reserved '?' variable and throw error
 ? should be initialized to 0 at startup. Maybe use it as the one global variable??
 should also prevent variable to start with - and throw unvalid option error
 

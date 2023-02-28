@@ -6,25 +6,11 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:11:53 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/15 14:07:04 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:51:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-int	ind_in_set(char c, char *set)
-{
-	int	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (c == set[i])
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 int	is_only_space(char *line)
 {

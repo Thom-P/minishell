@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/27 12:19:10 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:51:40 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,54 @@ void	free_wd_array(char **arr)
 		arr++;
 	}
 	free(arr_cpy);
+	return ;
+}
+
+int	ind_in_set(char c, char *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+char	**copy_envp(char **envp)
+{
+	int		size;
+	char	**my_envp;
+
+	size = 0;
+	while (envp[size])
+		size++;
+	my_envp = (char **)malloc((size + 1) * sizeof(char *));
+	if (my_envp == NULL)
+		my_exit("Malloc error in copy_envp\n", EXIT_FAILURE);
+	size = 0;
+	while (*envp)
+		my_envp[size++] = *envp++;
+	my_envp[size] = NULL;
+	return (my_envp);
+}
+
+void	print_jmsh_logo(void)
+{
+	char	*logo;
+
+	logo = "\n"
+		"      _                        __  __ _ ____  _          _ _ \n"
+		"     | | ___  __ _ _ __       |  \\/  (_) ___|| |__   ___| | |\n"
+		"  _  | |/ _ \\/ _` | '_ \\ _____| |\\/| | \\___ \\| '_ \\ / _ \\ | |\n"
+		" | |_| |  __/ (_| | | | |_____| |  | | |___) | | | |  __/ | |\n"
+		"  \\___/ \\___|\\__,_|_| |_|     |_|  |_|_|____/|_| |_|\\___|_|_|\n"
+		"\n"
+		"\n";
+	printf("%s\n", logo);
 	return ;
 }
 
@@ -78,39 +126,5 @@ void	_print_block(void *block_tmp)
 		i++;
 	}
 	printf("\n\n");
-	return ;
-}
-
-char	**copy_envp(char **envp)
-{
-	int		size;
-	char	**my_envp;
-
-	size = 0;
-	while (envp[size])
-		size++;
-	my_envp = (char **)malloc((size + 1) * sizeof(char *));
-	if (my_envp == NULL)
-		my_exit("Malloc error in copy_envp\n", EXIT_FAILURE);
-	size = 0;
-	while (*envp)
-		my_envp[size++] = *envp++;
-	my_envp[size] = NULL;
-	return (my_envp);
-}
-
-void	print_jmsh_logo(void)
-{
-	char	*logo;
-
-	logo = "\n"
-		"      _                        __  __ _ ____  _          _ _ \n"
-		"     | | ___  __ _ _ __       |  \\/  (_) ___|| |__   ___| | |\n"
-		"  _  | |/ _ \\/ _` | '_ \\ _____| |\\/| | \\___ \\| '_ \\ / _ \\ | |\n"
-		" | |_| |  __/ (_| | | | |_____| |  | | |___) | | | |  __/ | |\n"
-		"  \\___/ \\___|\\__,_|_| |_|     |_|  |_|_|____/|_| |_|\\___|_|_|\n"
-		"\n"
-		"\n";
-	printf("%s\n", logo);
 	return ;
 }
