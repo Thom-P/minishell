@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 13:01:33 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 16:15:26 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+
+//glob var
+int	g_status;
 
 // here doc already converted to <(tmp_file) in parsing
 enum e_redir{in = 1, out = 2, append = 3}; 
@@ -43,10 +46,10 @@ int		parse_line(char *line, t_list **exec_block, char **my_envp);
 void	exec_line(t_list *exec_blocks, char ***ptr_my_envp);
 
 // Builtins
-int		my_env(int ac, char **av, char **my_envp);
-int		my_export(int ac, char **av, char ***ptr_my_envp);
-int		my_unset(int ac, char **av, char ***ptr_my_envp);
-void	my_exit(char *msg, int status);
+int		b_env(int ac, char **av, char **my_envp);
+int		b_export(int ac, char **av, char ***ptr_my_envp);
+int		b_unset(int ac, char **av, char ***ptr_my_envp);
+void	b_exit(int ac, char **av); //envp to mod
 
 // Builtin utils
 int		get_env_size(char **my_envp);
@@ -58,6 +61,7 @@ void    free_block(void *tmp_block);
 char	**copy_envp(char **envp);
 int		ind_in_set(char c, char *set);
 void	print_jmsh_logo(void);
+void	my_exit(char *msg, int status);
 
 // For debug
 void	_print_block(void *block_tmp);

@@ -6,13 +6,11 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 13:19:31 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 16:15:48 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
-
-static int	g_status;
 
 int	main(int ac, char **av, char **envp)
 {
@@ -23,6 +21,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void) ac;
 	(void) av;
+	g_status = 0;
 	my_envp = copy_envp(envp);
 	exec_block = NULL;
 	prompt = "jmsh-1.0$ ";

@@ -6,11 +6,19 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:43:41 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 16:06:38 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
+
+void	my_exit(char *msg, int status)
+{
+	if (msg)
+		printf("%s", msg);
+	exit(status);
+	return ;
+}
 
 void	free_wd_array(char **arr)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_unset.c                                         :+:      :+:    :+:   */
+/*   b_unset.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 18:46:08 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 13:32:04 by tplanes          ###   ########.fr       */
+/*   Created: 2023/03/01 15:56:02 by tplanes           #+#    #+#             */
+/*   Updated: 2023/03/01 15:56:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	_remove_env(int ind_var, char ***ptr_my_envp);
 
 static int	_ind_var_in_env(char *var, char **my_envp);
 
-int	my_unset(int ac, char **av, char ***ptr_my_envp)
+int	b_unset(int ac, char **av, char ***ptr_my_envp)
 {
 	int	exit_status;
 	int	ind_var;

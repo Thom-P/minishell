@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_export.c                                        :+:      :+:    :+:   */
+/*   b_export.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 16:41:42 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 13:34:25 by tplanes          ###   ########.fr       */
+/*   Created: 2023/03/01 15:55:31 by tplanes           #+#    #+#             */
+/*   Updated: 2023/03/01 15:55:50 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ _print_export(*ptr_my_envp);
 export without option and name said to be undefined in one man, 
 and just print values in other
 */
-int	my_export(int ac, char **av, char ***ptr_my_envp)
+int	b_export(int ac, char **av, char ***ptr_my_envp)
 {
 	int	ind_equal;
 	int	exit_status;
@@ -30,7 +30,7 @@ int	my_export(int ac, char **av, char ***ptr_my_envp)
 	exit_status = EXIT_SUCCESS;
 	if (ac == 1)
 	{
-		my_env(ac, av, *ptr_my_envp);
+		b_env(ac, av, *ptr_my_envp);
 		return (EXIT_SUCCESS);
 	}
 	av++;

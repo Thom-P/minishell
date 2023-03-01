@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_env.c                                           :+:      :+:    :+:   */
+/*   b_env.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 16:41:04 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:41:16 by tplanes          ###   ########.fr       */
+/*   Created: 2023/03/01 15:55:05 by tplanes           #+#    #+#             */
+/*   Updated: 2023/03/01 15:55:16 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //SHOULD MODIFY _= to fit bash ?
 
-int	my_env(int ac, char **av, char **my_envp)
+int	b_env(int ac, char **av, char **my_envp)
 {
 	(void) av;
 	if (ac != 1)

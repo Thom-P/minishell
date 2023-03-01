@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 13:01:09 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 16:09:31 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp)
 	int	ac = block -> n_arg;
 	char **av = block -> cmd_args;
 	if (ft_strncmp(av[0], "exit", 5) == 0)
-		my_exit("", EXIT_SUCCESS);
+		b_exit(ac, av);
 	if (ft_strncmp(av[0], "env", 4) == 0)
-		my_env(ac, av, *ptr_my_envp);
+		b_env(ac, av, *ptr_my_envp);
 	if (ft_strncmp(av[0], "export", 7) == 0)
-		my_export(ac, av, ptr_my_envp);
+		b_export(ac, av, ptr_my_envp);
 	if (ft_strncmp(av[0], "unset", 6) == 0)
-		my_unset(ac, av, ptr_my_envp);
+		b_unset(ac, av, ptr_my_envp);
 
 	return ;
 }
