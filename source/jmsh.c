@@ -6,11 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:40:20 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 13:19:31 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
+
+static int	g_status;
 
 int	main(int ac, char **av, char **envp)
 {
@@ -25,6 +27,7 @@ int	main(int ac, char **av, char **envp)
 	exec_block = NULL;
 	prompt = "jmsh-1.0$ ";
 	print_jmsh_logo();
+	printf("status=%i\n", g_status);
 	while (1)
 	{
 		line = readline(prompt);
