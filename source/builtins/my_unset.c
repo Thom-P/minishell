@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:46:08 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 12:06:40 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 13:06:52 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	my_unset(int ac, char **av, char ***ptr_my_envp)
 	exit_status = EXIT_SUCCESS;
 	if (ac == 1)
 		return (exit_status);
+	av++;
 	while (*av)
 	{
 		ind_var = _ind_var_in_env(*av, *ptr_my_envp);
@@ -56,11 +57,12 @@ static void _remove_env(int ind_var, char ***ptr_my_envp)
 		i++;
 	}
 	free((*ptr_my_envp)[i]);
-	while (i < (new_env_size - 1))
+	while (i < new_env_size)
 	{	
 		my_new_envp[i] = (*ptr_my_envp)[i + 1];
 		i++;
 	}
+	my_new_envp[i] = NULL;
 	free(*ptr_my_envp);
 	*ptr_my_envp = my_new_envp;
 	return ;

@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:41:42 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 11:03:27 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 12:56:51 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	my_export(int ac, char **av, char ***ptr_my_envp)
 		my_env(ac, av, *ptr_my_envp);
 		return (EXIT_SUCCESS);
 	}
+	av++;
 	while (*av)	
 	{
 		ind_equal = ind_in_set('=', *av);

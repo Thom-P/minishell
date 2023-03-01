@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:39:11 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 13:01:09 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp)
 		my_env(ac, av, *ptr_my_envp);
 	if (ft_strncmp(av[0], "export", 7) == 0)
 		my_export(ac, av, ptr_my_envp);
+	if (ft_strncmp(av[0], "unset", 6) == 0)
+		my_unset(ac, av, ptr_my_envp);
 
 	return ;
 }

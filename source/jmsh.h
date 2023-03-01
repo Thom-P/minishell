@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 10:08:32 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 13:01:33 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp);
 // Builtins
 int		my_env(int ac, char **av, char **my_envp);
 int		my_export(int ac, char **av, char ***ptr_my_envp);
+int		my_unset(int ac, char **av, char ***ptr_my_envp);
 void	my_exit(char *msg, int status);
 
 // Builtin utils
