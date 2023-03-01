@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 18:46:08 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 13:06:52 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 13:32:04 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	my_unset(int ac, char **av, char ***ptr_my_envp)
 	return (exit_status);
 }
 
-static void _remove_env(int ind_var, char ***ptr_my_envp)
+static void	_remove_env(int ind_var, char ***ptr_my_envp)
 {
 	int		new_env_size;
 	char	**my_new_envp;
@@ -68,7 +68,7 @@ static void _remove_env(int ind_var, char ***ptr_my_envp)
 	return ;
 }
 
-static int _ind_var_in_env(char *var, char **my_envp)
+static int	_ind_var_in_env(char *var, char **my_envp)
 {
 	int	ind;
 	int	var_len;
@@ -77,7 +77,8 @@ static int _ind_var_in_env(char *var, char **my_envp)
 	var_len = ft_strlen(var);
 	while (my_envp[ind])
 	{
-		if (ft_strncmp(my_envp[ind], var, var_len) == 0 && my_envp[ind][var_len] == '=')
+		if (ft_strncmp(my_envp[ind], var, var_len) == 0
+			&& my_envp[ind][var_len] == '=')
 			return (ind);
 		ind++;
 	}
