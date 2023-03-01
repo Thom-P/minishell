@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:43:31 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 10:08:32 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	my_exit(char *msg, int status);
 
 // Builtin utils
 int		get_env_size(char **my_envp);
+int		is_var_name_legal(char *name);
 
 // Utils
 void	free_wd_array(char **arr);
