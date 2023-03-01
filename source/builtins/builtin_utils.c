@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:00:27 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 10:23:42 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 11:03:02 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int	get_env_size(char **my_envp)
 	return (size);
 }
 
-int	is_var_name_legal(char *name)
+int	is_var_name_legal(char *str)
 {
-	if (name[0] == '\0' || (!ft_isalpha(name[0]) && name[0] != '_'))
+	if (str[0] == '\0' || (!ft_isalpha(str[0]) && str[0] != '_'))
 		return (0);
-	while (*name)
+	while (*str && *str != '=')
 	{
-		if (!ft_isalnum(*name) && *name != '_')
+		if (!ft_isalnum(*str) && *str != '_')
 			return (0);
-		name++;
+		str++;
 	}
 	return (1);
 }

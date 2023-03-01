@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:41:42 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 10:28:04 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/01 11:03:27 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	my_export(int ac, char **av, char ***ptr_my_envp)
 {
 	int	ind_equal;
 	int	exit_status;
-	char	*varname;
 
 	exit_status = EXIT_SUCCESS;
 	if (ac == 1)
@@ -34,28 +33,13 @@ int	my_export(int ac, char **av, char ***ptr_my_envp)
 	}
 	while (*av)	
 	{
-		varname = ft_strdup(*av);
-		if(varname == NULL)
-			my_exit("Malloc error in ft_strdup: my_export\n", EXIT_FAILURE);
 		ind_equal = ind_in_set('=', *av);
-		if (ind_equal != -1)
-			varname[ind_equal] = '\0';
-		if (!is_var_name_legal(varname))
+		if (!is_var_name_legal(*av))
 		{
 			printf("export: %s: not a valid identifier\n", *av);
 			exit_status = EXIT_FAILURE;
-			free(varname);
-			av++;
-			continue ;
 		}
-		else if (ind_equal == -1)
-		{	
-			free(varname);
-			av++;
-			continue ;
-		}
-		free(varname);
-		if (!_repl_if_already_def(*av, ind_equal, *ptr_my_envp))
+		else if (ind_equal != -1 && !_repl_if_already_def(*av, ind_equal, *ptr_my_envp))
 			_add_env(*av, ptr_my_envp);
 		av++;
 	}
