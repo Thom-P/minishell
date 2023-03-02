@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:07:18 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 11:59:34 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:39:08 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	b_cd(int ac, char **av, char ***ptr_my_env)
 	int		exit_status;
 	char	*old_pwd;
 	char	*pwd;
-	
+
 	exit_status = 0;
 	if (ac == 1)
 		return (exit_status);
@@ -55,7 +55,7 @@ static void	_update_oldpwd_env(char *old_pwd, char ***ptr_my_env)
 	av_eff[2] = NULL;
 	b_export(2, av_eff, ptr_my_env);
 	free(av_eff[1]);
-	return ;	
+	return ;
 }
 
 static void	_update_pwd_env(char *pwd, char ***ptr_my_env)
@@ -69,5 +69,5 @@ static void	_update_pwd_env(char *pwd, char ***ptr_my_env)
 	av_eff[2] = NULL;
 	b_export(2, av_eff, ptr_my_env);
 	free(av_eff[1]);
-	return ;	
+	return ;
 }

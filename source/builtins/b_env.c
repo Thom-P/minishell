@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:55:05 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 13:58:36 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:40:03 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 int	b_env(int ac, char **av, char ***ptr_my_envp)
 {
 	char	**my_envp;
-	(void)	av;
 
+	(void) av;
 	my_envp = *ptr_my_envp;
 	if (ac != 1)
 	{

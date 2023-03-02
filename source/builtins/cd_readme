@@ -1,2 +1,0 @@
-should update current directory with chdir
-need to update my_envp for both PWD and old_PWD?

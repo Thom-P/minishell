@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:56:43 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 13:59:45 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:40:53 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	b_exit(int ac, char **av, char ***ptr_my_envp)
 		printf("jmsh: exit: %s: numeric argument required\n", av[1]);
 		exit(255);
 	}
-	else 
+	else
 		exit(ft_atoi(av[1]));
 	return (0);
 }
