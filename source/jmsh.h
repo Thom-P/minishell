@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 10:36:46 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 10:54:11 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		parse_line(char *line, t_list **exec_block, char **my_envp);
 void	exec_line(t_list *exec_blocks, char ***ptr_my_envp);
 
 // Builtins
+int		b_pwd(int ac, char **av, char ***ptr_my_envp);
 int		b_env(int ac, char **av, char **my_envp);
 int		b_export(int ac, char **av, char ***ptr_my_envp);
 int		b_unset(int ac, char **av, char ***ptr_my_envp);
