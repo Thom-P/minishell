@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:07:18 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 11:47:25 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 11:59:34 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ int	b_cd(int ac, char **av, char ***ptr_my_env)
 		my_exit("getcwd error in b_cd\n", EXIT_FAILURE);
 	exit_status = chdir(av[1]);
 	if (exit_status != 0)
+	{
+		free(old_pwd);
 		return (exit_status);
+	}
 	_update_oldpwd_env(old_pwd, ptr_my_env);
 	free(old_pwd);
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		my_exit("getcwd error in b_cd\n", EXIT_FAILURE);
 	_update_pwd_env(pwd, ptr_my_env);
+	free(pwd);
 	return (exit_status);
 }
 
