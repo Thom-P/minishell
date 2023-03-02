@@ -6,15 +6,38 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 13:37:53 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 15:37:57 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
+{
+	t_list	*tokens;
+
+	tokens = NULL;
+	if (is_only_space(line))
+		return (-1);
+	if (odd_num_quote(line))
+	{	
+		printf("Error: missing quote\n");
+		return (-1);
+	}
+	tokenize(line, &tokens);
+	expand_variables(tokens, my_envp);
+	merge_word_toks(tokens);
+	remove_space_toks(&tokens);
+	if (verify_tokens(&tokens) == -1)
+		return (-1);
+	process_heredocs(tokens);
+	build_exec_blocks(tokens, exec_blocks);
+	ft_lstclear(&tokens, &free_token);
+	return (0);
+}
 //static void	_print_token(void *tok);
 
-int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
+/*int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 {
 	t_list	*tokens;
 
@@ -51,7 +74,7 @@ int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 	build_exec_blocks(tokens, exec_blocks);
 	ft_lstclear(&tokens, &free_token);
 	return (0);
-}
+}*/
 
 // for debug only
 /*
