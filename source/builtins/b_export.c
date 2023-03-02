@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:55:31 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 15:55:50 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 12:01:48 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	_print_export(char **my_envp);
 _print_export(*ptr_my_envp);
 export without option and name said to be undefined in one man, 
 and just print values in other
+worth effort of sorting and printing with "" + declare?
 */
 int	b_export(int ac, char **av, char ***ptr_my_envp)
 {

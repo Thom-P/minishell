@@ -1,4 +1,0 @@
-? should be initialized to 0 at startup. Maybe use it as the one global variable??
-should also prevent variable to start with - and throw unvalid option error
-
-export without option should list env variable sorted, with special formatting (including "")
