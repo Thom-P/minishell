@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 17:21:53 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 17:55:57 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,14 @@ static char	*_get_prompt(int g_status)
 	status = ft_itoa(g_status);
 	if (status == NULL)
 		my_exit("itoa error in jmsh.c\n", EXIT_FAILURE);
-	prompt = ft_strjoin(status, "\033[1;32m@jmsh-1.0$\033[0m ");
+	if (g_status == 0)
+		prompt = ft_strdup("\033[1;32mjmsh-1.0$\033[0m ");
+	else
+	{	
+		printf("\033[1;31m");
+		prompt = ft_strjoin(status, "@jmsh-1.0$\033[0m ");
+		//prompt = ft_strjoin(status, "\033[1;31m@jmsh-1.0$\033[0m ");
+	}
 	if (prompt == NULL)
 		my_exit("strjoin error in jmsh.c\n", EXIT_FAILURE);
 	free(status);
