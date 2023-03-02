@@ -6,11 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 10:44:54 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:36:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
+
+static char	*_get_prompt(int g_status);
 
 int	main(int ac, char **av, char **envp)
 {
@@ -23,13 +25,11 @@ int	main(int ac, char **av, char **envp)
 	(void) av;
 	g_status = 0;
 	my_envp = copy_envp(envp);
-	//incr_shell_lvl(my_envp);
 	exec_block = NULL;
-	prompt = "jmsh-1.0$ ";
 	print_jmsh_logo();
-	printf("status=%i\n", g_status);
 	while (1)
 	{
+		prompt = _get_prompt(g_status);
 		line = readline(prompt);
 		if (line == NULL)
 			exit(EXIT_FAILURE);
@@ -50,3 +50,19 @@ int	main(int ac, char **av, char **envp)
 	}
 	return (0);
 }
+
+static char	*_get_prompt(int g_status)
+{
+	char	*status;
+	char	*prompt;
+
+	status = ft_itoa(g_status);
+	if (status == NULL)
+		my_exit("itoa error in jmsh.c\n", EXIT_FAILURE);
+	prompt = ft_strjoin(status, "@jmsh-1.0$ ");
+	if (prompt == NULL)
+		my_exit("strjoin error in jmsh.c\n", EXIT_FAILURE);
+	return (prompt);
+}
+
+
