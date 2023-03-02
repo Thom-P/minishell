@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 16:15:48 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 10:44:54 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int ac, char **av, char **envp)
 	(void) av;
 	g_status = 0;
 	my_envp = copy_envp(envp);
+	//incr_shell_lvl(my_envp);
 	exec_block = NULL;
 	prompt = "jmsh-1.0$ ";
 	print_jmsh_logo();
@@ -37,14 +38,8 @@ int	main(int ac, char **av, char **envp)
 			free(line);
 			continue ;
 		}
-		/*if (ft_strncmp(line, "exit", 5) == 0) //temporary hack to avoid writing builtin exit
-		{
-			free_wd_array(my_envp);
-			free(line);
-			return (0); //need to return status of last cmd instead
-		}*/
 		add_history(line);
-		if (parse_line(line, &exec_block, my_envp) == -1) //will need to copy envp!
+		if (parse_line(line, &exec_block, my_envp) == -1)
 		{
 			free(line);
 			continue ;		

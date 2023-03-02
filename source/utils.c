@@ -6,11 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 16:06:38 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 10:44:47 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
+
+//static char *_get_updated_shlvl(char *old_str);
 
 void	my_exit(char *msg, int status)
 {
@@ -72,6 +74,45 @@ char	**copy_envp(char **envp)
 	my_envp[size] = NULL;
 	return (my_envp);
 }
+
+/* SEEMS LIKE DONE AUTOMATICALLY
+ * void	incr_shell_lvl(char **my_envp)
+{
+	char	*str;
+
+	while (*my_envp)
+	{
+		if(ft_strncmp(*my_envp, "SHLVL=", 6) != 0)
+		{
+			my_envp++;
+			continue ;
+		}
+		str = _get_updated_shlvl(*my_envp);
+		free(*my_envp);
+		*my_envp = str;
+		break;
+	}
+	return ;
+}
+
+static char *_get_updated_shlvl(char *old_str)
+{
+	int		old_lvl;
+	char	*new_lvl;
+	char	*new_str;
+
+	old_lvl = ft_atoi(&old_str[6]);
+	printf("old lv=%i\n", old_lvl);
+	new_lvl = ft_itoa(old_lvl + 1);
+	printf("new lv=%s\n", new_lvl);
+	if (new_lvl == NULL)
+		my_exit("Malloc error in get_updated_shlvl\n", EXIT_FAILURE);
+	new_str = ft_strjoin("SHLVL=", new_lvl);
+	if (new_str == NULL)
+		my_exit("Malloc error in get_updated_shlvl\n", EXIT_FAILURE);
+	return (new_str);
+}*/
+
 
 void	print_jmsh_logo(void)
 {

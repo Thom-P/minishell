@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 17:46:32 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 10:36:46 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		is_var_name_legal(char *name);
 void	free_wd_array(char **arr);
 void    free_block(void *tmp_block);
 char	**copy_envp(char **envp);
+void	incr_shell_lvl(char **my_envp);
 int		ind_in_set(char c, char *set);
 void	print_jmsh_logo(void);
 void	my_exit(char *msg, int status);
