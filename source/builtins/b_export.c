@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:55:31 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 12:01:48 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:02:10 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	b_export(int ac, char **av, char ***ptr_my_envp)
 	exit_status = EXIT_SUCCESS;
 	if (ac == 1)
 	{
-		b_env(ac, av, *ptr_my_envp);
+		b_env(ac, av, ptr_my_envp);
 		return (EXIT_SUCCESS);
 	}
 	av++;

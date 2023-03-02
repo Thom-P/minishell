@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:56:43 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/01 17:47:56 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 13:59:45 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	_is_only_num(char *str);
 
-int	b_exit(int ac, char **av)
+int	b_exit(int ac, char **av, char ***ptr_my_envp)
 {
+	(void) ptr_my_envp;
 	if (ac > 2)
 	{	
 		printf("jmsh: exit: too many arguments\n");

@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 13:29:54 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:01:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp)
 	//int	ind_builtin = _get_index_builtin(av[0]);
 	//if (ind_builtin != -1)
 	//	g_status = f_array[]
-	if (ft_strncmp(av[0], "exit", 5) == 0)
-		g_status = b_exit(ac, av);
-	if (ft_strncmp(av[0], "env", 4) == 0)
-		g_status = b_env(ac, av, *ptr_my_envp);
+	if (ft_strncmp(av[0], "echo", 5) == 0)
+		g_status = b_echo(ac, av, ptr_my_envp);
+	if (ft_strncmp(av[0], "cd", 3) == 0)
+		g_status = b_cd(ac, av, ptr_my_envp);
+	if (ft_strncmp(av[0], "pwd", 4) == 0)
+		g_status = b_pwd(ac, av, ptr_my_envp);
 	if (ft_strncmp(av[0], "export", 7) == 0)
 		g_status = b_export(ac, av, ptr_my_envp);
 	if (ft_strncmp(av[0], "unset", 6) == 0)
 		g_status = b_unset(ac, av, ptr_my_envp);
-	if (ft_strncmp(av[0], "pwd", 4) == 0)
-		g_status = b_pwd(ac, av, ptr_my_envp);
-	if (ft_strncmp(av[0], "cd", 3) == 0)
-		g_status = b_cd(ac, av, ptr_my_envp);
-	if (ft_strncmp(av[0], "echo", 5) == 0)
-		g_status = b_echo(ac, av, ptr_my_envp);
+	if (ft_strncmp(av[0], "env", 4) == 0)
+		g_status = b_env(ac, av, ptr_my_envp);
+	if (ft_strncmp(av[0], "exit", 5) == 0)
+		g_status = b_exit(ac, av, ptr_my_envp);
 	return ;
 }
 

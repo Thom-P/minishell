@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 13:30:30 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 14:00:52 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int		parse_line(char *line, t_list **exec_block, char **my_envp);
 void	exec_line(t_list *exec_blocks, char ***ptr_my_envp);
 
 // Builtins
-int		b_pwd(int ac, char **av, char ***ptr_my_envp);
-int		b_cd(int ac, char **av, char ***ptr_my_envp);
 int		b_echo(int ac, char **av, char ***ptr_my_envp);
-int		b_env(int ac, char **av, char **my_envp);
+int		b_cd(int ac, char **av, char ***ptr_my_envp);
+int		b_pwd(int ac, char **av, char ***ptr_my_envp);
 int		b_export(int ac, char **av, char ***ptr_my_envp);
 int		b_unset(int ac, char **av, char ***ptr_my_envp);
-int		b_exit(int ac, char **av); //envp to mod
+int		b_env(int ac, char **av, char ***ptr_my_envp);
+int		b_exit(int ac, char **av, char ***ptr_my_envp);
 
 // Builtin utils
 int		get_env_size(char **my_envp);
