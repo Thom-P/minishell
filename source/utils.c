@@ -6,13 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 10:44:47 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 17:27:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
-//static char *_get_updated_shlvl(char *old_str);
+static char *_get_updated_shlvl(char *old_str);
 
 void	my_exit(char *msg, int status)
 {
@@ -75,8 +75,7 @@ char	**copy_envp(char **envp)
 	return (my_envp);
 }
 
-/* SEEMS LIKE DONE AUTOMATICALLY
- * void	incr_shell_lvl(char **my_envp)
+void	incr_shell_lvl(char **my_envp)
 {
 	char	*str;
 
@@ -102,16 +101,15 @@ static char *_get_updated_shlvl(char *old_str)
 	char	*new_str;
 
 	old_lvl = ft_atoi(&old_str[6]);
-	printf("old lv=%i\n", old_lvl);
 	new_lvl = ft_itoa(old_lvl + 1);
-	printf("new lv=%s\n", new_lvl);
 	if (new_lvl == NULL)
 		my_exit("Malloc error in get_updated_shlvl\n", EXIT_FAILURE);
 	new_str = ft_strjoin("SHLVL=", new_lvl);
 	if (new_str == NULL)
 		my_exit("Malloc error in get_updated_shlvl\n", EXIT_FAILURE);
+	free(new_lvl);
 	return (new_str);
-}*/
+}
 
 
 void	print_jmsh_logo(void)
