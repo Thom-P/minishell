@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 11:13:00 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 13:29:54 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	exec_line(t_list *exec_blocks, char ***ptr_my_envp)
 {
 	//temporary action: print the content of the exec blocks
-	ft_lstiter(exec_blocks, &_print_block);
-	printf("\n");
+	//ft_lstiter(exec_blocks, &_print_block);
+	//printf("\n");
 	
 	//see the readme file
 
@@ -39,6 +39,8 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp)
 		g_status = b_pwd(ac, av, ptr_my_envp);
 	if (ft_strncmp(av[0], "cd", 3) == 0)
 		g_status = b_cd(ac, av, ptr_my_envp);
+	if (ft_strncmp(av[0], "echo", 5) == 0)
+		g_status = b_echo(ac, av, ptr_my_envp);
 	return ;
 }
 

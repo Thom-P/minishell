@@ -6,20 +6,20 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/26 15:27:24 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/02 13:37:53 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	_print_token(void *tok);
+//static void	_print_token(void *tok);
 
 int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 {
 	t_list	*tokens;
 
 	tokens = NULL;
-	printf("Parsing: %s\n", line);
+	//printf("Parsing: %s\n", line);
 	if (is_only_space(line))
 		return (-1);
 	if (odd_num_quote(line))
@@ -46,14 +46,15 @@ int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 	if (verify_tokens(&tokens) == -1)
 		return (-1);
 	process_heredocs(tokens);
-	ft_lstiter(tokens, &_print_token);
-	printf("\n\n");
+	//ft_lstiter(tokens, &_print_token);
+	//printf("\n\n");
 	build_exec_blocks(tokens, exec_blocks);
 	ft_lstclear(&tokens, &free_token);
 	return (0);
 }
 
 // for debug only
+/*
 static void	_print_token(void *tok)
 {
 	char	*type;
@@ -77,4 +78,4 @@ static void	_print_token(void *tok)
 	}
 	printf("(%s:%s:%i) ", type, ((t_tok *)tok)-> str, ((t_tok *)tok)-> len);
 	return ;
-}
+}*/
