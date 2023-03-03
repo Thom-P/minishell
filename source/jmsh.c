@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/03 16:59:45 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/03 17:50:47 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 
 static char	*_get_prompt(int g_status);
 
+static void	_fill_builtin_struc(t_builtin *builtin);
+
 int	main(int ac, char **av, char **envp)
 {
 	char	*line;
 	char	*prompt;
 	t_list	*exec_block;
 	char	**my_envp;
+	t_builtin	builtin;
 
 	(void) ac;
 	(void) av;
 	g_status = 0;
 	my_envp = copy_envp(envp);
 	incr_shell_lvl(my_envp);
+	_fill_builtin_struc(&builtin);
 	exec_block = NULL;
 	print_jmsh_logo();
 	while (1)
@@ -48,7 +52,7 @@ int	main(int ac, char **av, char **envp)
 			continue ;		
 		}
 		free(line);
-		exec_line(exec_block, &my_envp);
+		exec_line(exec_block, &my_envp, &builtin);
 		ft_lstclear(&exec_block, &free_block);
 	}
 	return (0);
@@ -81,4 +85,22 @@ static char	*_get_prompt(int g_status)
 	return (prompt);
 }
 
-
+// Construct builtin list and associated function pointer array
+static void	_fill_builtin_struc(t_builtin *builtin)
+{
+	builtin -> names[0] = "echo";
+	builtin -> names[1] = "cd";
+	builtin -> names[2] = "pwd";
+	builtin -> names[3] = "export";
+	builtin -> names[4] = "unset";
+	builtin -> names[5] = "env";
+	builtin -> names[6] = "exit";
+	builtin -> f_ptr[0] = b_echo;
+	builtin -> f_ptr[1] = b_cd;
+	builtin -> f_ptr[2] = b_pwd;
+	builtin -> f_ptr[3] = b_export;
+	builtin -> f_ptr[4] = b_unset;
+	builtin -> f_ptr[5] = b_env;
+	builtin -> f_ptr[6] = b_exit;
+	return ;
+}

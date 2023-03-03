@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 14:00:52 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/03 17:25:11 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 
+# define N_BUILTIN 7
+
 //glob var
 int	g_status;
 
@@ -40,11 +42,18 @@ typedef struct s_block
 	char			**cmd_args;	
 }	t_block;
 
+// Builtin list and function pointer struct
+typedef struct s_builtin
+{
+	char	*names[N_BUILTIN];
+	int		(*f_ptr[N_BUILTIN])(int ac, char **av, char ***ptr_my_envp);
+}	t_builtin;
+
 // Parsing
 int		parse_line(char *line, t_list **exec_block, char **my_envp);
 
 // Execution
-void	exec_line(t_list *exec_blocks, char ***ptr_my_envp);
+void	exec_line(t_list *exec_blocks, char ***ptr_my_envp, t_builtin *builtin);
 
 // Builtins
 int		b_echo(int ac, char **av, char ***ptr_my_envp);
