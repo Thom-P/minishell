@@ -6,13 +6,13 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 17:27:25 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/03 18:33:32 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
-static char *_get_updated_shlvl(char *old_str);
+static char	*_get_updated_shlvl(char *old_str);
 
 void	my_exit(char *msg, int status)
 {
@@ -81,7 +81,7 @@ void	incr_shell_lvl(char **my_envp)
 
 	while (*my_envp)
 	{
-		if(ft_strncmp(*my_envp, "SHLVL=", 6) != 0)
+		if (ft_strncmp(*my_envp, "SHLVL=", 6) != 0)
 		{
 			my_envp++;
 			continue ;
@@ -89,12 +89,12 @@ void	incr_shell_lvl(char **my_envp)
 		str = _get_updated_shlvl(*my_envp);
 		free(*my_envp);
 		*my_envp = str;
-		break;
+		break ;
 	}
 	return ;
 }
 
-static char *_get_updated_shlvl(char *old_str)
+static char	*_get_updated_shlvl(char *old_str)
 {
 	int		old_lvl;
 	char	*new_lvl;
@@ -110,7 +110,6 @@ static char *_get_updated_shlvl(char *old_str)
 	free(new_lvl);
 	return (new_str);
 }
-
 
 void	print_jmsh_logo(void)
 {

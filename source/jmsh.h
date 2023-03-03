@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/03 17:25:11 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/03 18:32:18 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 int	g_status;
 
 // here doc already converted to <(tmp_file) in parsing
-enum e_redir{in = 1, out = 2, append = 3}; 
+enum e_redir{in = 1, out = 2, append = 3};
 
 //n_arg include command
 typedef struct s_block
@@ -70,7 +70,7 @@ int		is_var_name_legal(char *name);
 
 // Utils
 void	free_wd_array(char **arr);
-void    free_block(void *tmp_block);
+void	free_block(void *tmp_block);
 char	**copy_envp(char **envp);
 void	incr_shell_lvl(char **my_envp);
 int		ind_in_set(char c, char *set);
