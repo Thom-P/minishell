@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 23:17:32 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/04 23:41:08 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void	register_signals(void)
 void	sigint_handler(int signum)
 {
 	(void) signum;
-	//printf("Caught a sigint!\n");
-	//printf("\n");
 	g_status = 1;
 	rl_replace_line("", 0);
 	printf("\n");
 	rl_on_new_line();
+	rl_redisplay();
 
 	return ;
 }
