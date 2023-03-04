@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 19:49:13 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/04 21:22:44 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	register_signals(void)
 		else
 			printf("bef: echo ctl inactive\n");
 		//termios_p.c_lflag = termios_p.c_lflag & (~ECHOCTL);
-		termios_p.c_lflag &= (~ECHOCTL);
-		int j = tcsetattr(fd, TCSANOW, &termios_p);
-		printf("j=%i\n", j);
+		//termios_p.c_lflag &= (~ECHOCTL);
+		//int j = tcsetattr(fd, TCSANOW, &termios_p);
+		//printf("j=%i\n", j);
 		if (termios_p.c_lflag & ECHOCTL)
 			printf("aft: echo ctl active\n");
 		else

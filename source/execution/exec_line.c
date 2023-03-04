@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/03 17:52:48 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/04 21:35:51 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static int	_get_index_builtin(char *cmd, char *names[N_BUILTIN])
 {
 	int		ind;
 
+	if (cmd == NULL)
+		return (-1);
 	ind = 0;
 	while (ind < N_BUILTIN)
 	{
