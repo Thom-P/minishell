@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 21:22:44 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/04 22:48:10 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void	register_signals(void)
 			printf("bef: echo ctl active\n");
 		else
 			printf("bef: echo ctl inactive\n");
-		//termios_p.c_lflag = termios_p.c_lflag & (~ECHOCTL);
-		//termios_p.c_lflag &= (~ECHOCTL);
-		//int j = tcsetattr(fd, TCSANOW, &termios_p);
-		//printf("j=%i\n", j);
+		termios_p.c_lflag &= ~ECHOCTL;
+		int j = tcsetattr(fd, TCSANOW, &termios_p);
+		printf("j=%i\n", j);
 		if (termios_p.c_lflag & ECHOCTL)
 			printf("aft: echo ctl active\n");
 		else
@@ -94,7 +93,7 @@ void	sigint_handler(int signum)
 	(void) signum;
 	printf("Caught a sigint!\n");
 	g_status = 1;
-	//rl_replace_line("test", 0);
+	rl_replace_line("test", 0);
 
 	return ;
 }
