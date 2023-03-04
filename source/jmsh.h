@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/03 18:32:18 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/04 19:02:34 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <termios.h>
 
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
 
 # define N_BUILTIN 7
+
+// Readline fix
+void	rl_replace_line(const char *text, int clear_undo);
 
 //glob var
 int	g_status;
@@ -67,6 +71,10 @@ int		b_exit(int ac, char **av, char ***ptr_my_envp);
 // Builtin utils
 int		get_env_size(char **my_envp);
 int		is_var_name_legal(char *name);
+
+// Signals
+void	register_signals(void);
+void	sigint_handler(int signum);
 
 // Utils
 void	free_wd_array(char **arr);
