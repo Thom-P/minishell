@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/05 11:06:33 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 11:40:00 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void	set_parent_sigs(void)
 {
+	int				fd;				
+	struct termios	termios_p;
+
+	fd = STDOUT_FILENO;
+	if (isatty(fd))
+	{
+		tcgetattr(fd, &termios_p);
+		termios_p.c_lflag &= ~ECHOCTL;
+		tcsetattr(fd, TCSANOW, &termios_p);
+	}
 	signal(SIGINT, sigint_parent);
 	signal(SIGQUIT, SIG_IGN);
 	return ;
@@ -27,7 +37,6 @@ void	sigint_parent(int signum)
 	printf("\n");
 	rl_on_new_line();
 	rl_redisplay();
-
 	return ;
 }
 /*
