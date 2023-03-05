@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:07:18 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 14:39:08 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 12:04:50 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	b_cd(int ac, char **av, char ***ptr_my_env)
 	if (exit_status != 0)
 	{
 		free(old_pwd);
-		return (exit_status);
+		perror("jmsh: cd");
+		return (1);
 	}
 	_update_oldpwd_env(old_pwd, ptr_my_env);
 	free(old_pwd);
