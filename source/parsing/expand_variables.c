@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:51:29 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/20 18:41:16 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/04 17:04:47 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,20 @@ static void	_tok_expand(t_tok *tok, char **my_envp)
 	char	*value;
 
 	value = get_var_from_envp(tok -> str, tok -> len, my_envp);
-	free(tok -> str);
-	if (value == NULL)
+	if (value == NULL && tok -> len == 1 && *(tok -> str) == '?')
+	{	
+		value = ft_itoa(g_status);
+		if (value == NULL)
+			my_exit("ft_itoa error in _tok_expand\n", EXIT_FAILURE);
+	}
+	else if (value == NULL)
 	{	
 		value = (char *)malloc(1);
+		if (value == NULL)
+			my_exit("malloc error in _tok_expand\n", EXIT_FAILURE);
 		*value = '\0';
 	}
+	free(tok -> str);
 	tok -> str = value;
 	tok -> len = ft_strlen(value);
 	tok -> type = word;

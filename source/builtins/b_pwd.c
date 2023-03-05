@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_exit.c                                          :+:      :+:    :+:   */
+/*   b_pwd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 16:44:03 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/28 16:44:37 by tplanes          ###   ########.fr       */
+/*   Created: 2023/03/02 10:48:44 by tplanes           #+#    #+#             */
+/*   Updated: 2023/03/02 14:41:14 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
-void	my_exit(char *msg, int status)
+int	b_pwd(int ac, char **av, char ***ptr_my_envp)
 {
-	if (msg)
-		printf("%s", msg);
-	exit(status);
-	return ;
+	char	*buf;
+
+	(void) ac;
+	(void) av;
+	(void) ptr_my_envp;
+	buf = getcwd(NULL, 0);
+	if (buf == NULL)
+		my_exit("getcwd alloc error\n", EXIT_FAILURE);
+	printf("%s\n", buf);
+	free(buf);
+	return (EXIT_SUCCESS);
 }

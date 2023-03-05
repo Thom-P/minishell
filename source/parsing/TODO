@@ -1,5 +1,0 @@
-make var expansion recursive?
-is the recursion happening at pasring or during the export?
-
-refactor/simplify the tokenizer/parsing?
-implement the here-doc
