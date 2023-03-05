@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:46 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 19:02:34 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 11:06:03 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int		get_env_size(char **my_envp);
 int		is_var_name_legal(char *name);
 
 // Signals
-void	register_signals(void);
-void	sigint_handler(int signum);
+void	set_parent_sigs(void);
+void	sigint_parent(int signum);
 
 // Utils
 void	free_wd_array(char **arr);

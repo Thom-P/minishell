@@ -6,20 +6,20 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 23:41:08 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 11:06:33 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
-void	register_signals(void)
+void	set_parent_sigs(void)
 {
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, sigint_parent);
 	signal(SIGQUIT, SIG_IGN);
 	return ;
 }
 
-void	sigint_handler(int signum)
+void	sigint_parent(int signum)
 {
 	(void) signum;
 	g_status = 1;

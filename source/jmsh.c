@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 21:52:37 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 11:04:32 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void) ac;
 	(void) av;
-	register_signals();
+	set_parent_sigs();
 	g_status = 0;
 	my_envp = copy_envp(envp);
 	incr_shell_lvl(my_envp);
