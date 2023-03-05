@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 15:48:24 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/04 17:04:16 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 11:50:28 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	parse_line(char *line, t_list **exec_blocks, char **my_envp)
 
 	tokens = NULL;
 	if (is_only_space(line))
-		return (-1);
+		return (-2);
 	if (odd_num_quote(line))
 	{	
 		printf("Error: missing quote\n");

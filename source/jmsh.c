@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/05 11:36:29 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/05 11:52:32 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	_read_and_exec(char **line, char ***ptr_my_envp, t_builtin *built)
 {
 	char	*prompt;
 	t_list	*exec_block;
+	int		parse_status;
 
 	exec_block = NULL;
 	prompt = _get_prompt(g_status);
@@ -54,9 +55,11 @@ static void	_read_and_exec(char **line, char ***ptr_my_envp, t_builtin *built)
 	if (**line == '\0')
 		return ;
 	add_history(*line);
-	if (parse_line(*line, &exec_block, *ptr_my_envp) == -1)
+	parse_status = parse_line(*line, &exec_block, *ptr_my_envp);
+	if (parse_status < 0)
 	{
-		g_status = 258;
+		if (parse_status == -1)
+			g_status = 258;
 		return ;
 	}
 	free(*line);
