@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 18:11:36 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:21:53 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	init_exec_struct(t_exec *exec, t_list *exec_blocks, char **my_env)
 {
-	int	nb_blocks;
 	int	i;
 
 	i = -1;
-	nb_blocks = ft_lstsize(exec_blocks);
-	exec->nb_pipes = nb_blocks - 1;
-	exec->nb_cmd = nb_blocks;
+	exec->nb_blocks = ft_lstsize(exec_blocks);
+	printf("nb_blocks:%i\n", exec->nb_blocks);
+	exec->nb_pipes = exec->nb_blocks - 1;
+	printf("nb_pipes:%i\n", exec->nb_pipes);
+	exec->nb_cmd = exec->nb_blocks;
 	exec->fd = ft_calloc(sizeof(*exec->fd), exec->nb_pipes);
 	if (exec->fd == NULL)
 		return ;

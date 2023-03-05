@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:52:14 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 17:15:41 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:15:18 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_exec
 	int		**fd;
 	int		fd_in;
 	int		fd_out;
+	int		nb_blocks;
 	char	**path;
 	pid_t	*pid;
 }	t_exec;
