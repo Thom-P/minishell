@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 20:56:40 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:05:30 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 	}
 	free_tab_path(&exec);
 	free(exec.pid);
+	free(exec.fd);
 	return (g_status);
 }
 
