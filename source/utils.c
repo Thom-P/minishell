@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 15:40:06 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/05 13:06:13 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 13:37:59 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*_get_updated_shlvl(char *old_str);
 void	my_exit(char *msg, int status)
 {
 	if (msg)
-		printf("%s", msg);
+		ft_putstr_fd(msg, 2);
 	exit(status);
 	return ;
 }
