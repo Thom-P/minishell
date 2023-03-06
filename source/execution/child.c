@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:46:46 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/06 14:03:20 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:43:34 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	child(t_exec *exec, t_block *blocks, t_builtin *builtin, char **my_env)
 	{	
 		g_status = builtin -> f_ptr[ind_built](blocks->n_arg,
 				blocks->cmd_args, &my_env);
-		exit(g_status); //TODO: exit a finir (free?)
+		exit(g_status);
 	}
 	else
 	{
@@ -70,23 +70,13 @@ void	child(t_exec *exec, t_block *blocks, t_builtin *builtin, char **my_env)
 				my_exit("mallor error in child\n", EXIT_FAILURE);
 		}
 		else
-		{
 			cmd = find_cmd(exec, blocks->cmd_args[0]);
-			if (cmd == NULL)
-			{
-				g_status = 127;
-				my_exit("jmsh: command not found\n", g_status);
-			}
-		}
 		g_status = execve(cmd, blocks->cmd_args, my_env);
 		if (g_status == -1)
 		{
 			perror("jmsh");
 			g_status = 126;
 			my_exit("", g_status);
-			// error_exit(MSG_INV_CMD, data);
 		}
 	}
 }
-
-	// execve(cmd, blocks->cmd_args, my_env);

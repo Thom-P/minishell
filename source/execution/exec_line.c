@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 14:54:35 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:04:55 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,21 @@ void	init_exec_struct(t_exec *exec, t_list *exec_blocks, char **my_env)
 	exec->nb_cmd = exec->nb_blocks;
 	exec->fd = ft_calloc(sizeof(*exec->fd), exec->nb_pipes);
 	if (exec->fd == NULL)
-		return ; //TODO: mieux gerer l'erreur
+		my_exit("Malloc error in init_exec_struct\n", EXIT_FAILURE);
 	exec->pid = ft_calloc(sizeof(exec->pid), exec->nb_cmd);
 	if (exec->pid == NULL)
-		return ; //TODO: mieux gerer l'erreur
+		my_exit("Malloc error in init_exec_struct\n", EXIT_FAILURE);
 	while (my_env[++i])
 	{
-		if (ft_strnstr(my_env[i],
-				"PATH=", ft_strlen(my_env[i])) != NULL)
-			exec->path = ft_split(&my_env[i][5], ':'); //TODO: a protéger
+		if (ft_strncmp(my_env[i], "PATH=", 5) == 0)
+		{	
+			exec->path = ft_split(&my_env[i][5], ':');
+			if (exec -> path == NULL)
+				my_exit("ft_split error in init_exec_struct", EXIT_FAILURE);
+			break ;
+		}
 	}
+	return ;
 }
 
 void	free_tab_path(t_exec *exec)
@@ -88,8 +93,10 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp, t_builtin *builtin)
 		{	
 			std_save[1] = dup(STDOUT_FILENO);
 			std_save[0] = dup(STDIN_FILENO);
-			fd_redir_one_block(exec_blocks -> content);
-			g_status = builtin -> f_ptr[ind_built](ac, av, ptr_my_envp);
+			if (fd_redir_one_block(exec_blocks -> content) == 0)
+				g_status = builtin -> f_ptr[ind_built](ac, av, ptr_my_envp);
+			else
+				g_status = 1;
 			dup2(std_save[1], STDOUT_FILENO);
 			dup2(std_save[0], STDIN_FILENO);
 			return ;
