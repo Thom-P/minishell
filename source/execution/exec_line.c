@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 17:04:55 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 20:56:40 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 	waitpid(exec.pid[++(exec.n)], &stat_last_pid, 0);
 	if (WIFEXITED(stat_last_pid))
 		g_status = WEXITSTATUS(stat_last_pid);
+	else if (WIFSIGNALED(stat_last_pid))
+	{	
+		g_status = WTERMSIG(stat_last_pid) + 128;
+		write(1, "\n", 1);
+	}
 	free_tab_path(&exec);
 	free(exec.pid);
 	return (g_status);

@@ -6,30 +6,45 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 18:32:40 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 20:40:21 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
-void	set_parent_sigs(void)
+static void	sigint_prompt(int signum);
+
+void	set_sigs(int is_parent, int is_child_running)
 {
 	int				fd;				
 	struct termios	termios_p;
 
-	fd = STDOUT_FILENO;
-	if (isatty(fd))
+	if (is_parent && !is_child_running)
 	{
-		tcgetattr(fd, &termios_p);
-		termios_p.c_lflag &= ~ECHOCTL;
-		tcsetattr(fd, TCSANOW, &termios_p);
+		fd = STDOUT_FILENO;
+		if (isatty(fd))
+		{
+			tcgetattr(fd, &termios_p);
+			termios_p.c_lflag &= ~ECHOCTL;
+			tcsetattr(fd, TCSANOW, &termios_p);
+		}
+		signal(SIGINT, sigint_prompt);
+		signal(SIGQUIT, SIG_IGN);
 	}
-	signal(SIGINT, sigint_parent);
-	signal(SIGQUIT, SIG_IGN);
+	else if(is_parent)
+	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	else
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+	}
 	return ;
 }
 
-void	sigint_parent(int signum)
+static void	sigint_prompt(int signum)
 {
 	(void) signum;
 	g_status = 1;
@@ -39,16 +54,16 @@ void	sigint_parent(int signum)
 	rl_redisplay();
 	return ;
 }
+
 /*
 void	set_child_sigs(void)
 {
-	printf("heree\n");
-	signal(SIGINT, sigint_child);
-	signal(SIGQUIT, sigint_child);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	return ;
 }
 
-void	sigint_child(int signum)
+*void	sigint_child(int signum)
 {
 	//(void) signum;
 	ft_printf(STDERR_FILENO, "child received sig %i\n", signum);

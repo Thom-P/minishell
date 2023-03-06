@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/05 11:52:32 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 20:41:15 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int ac, char **av, char **envp)
 
 	(void) ac;
 	(void) av;
-	set_parent_sigs();
 	g_status = 0;
 	my_envp = copy_envp(envp);
 	incr_shell_lvl(my_envp);
@@ -34,6 +33,7 @@ int	main(int ac, char **av, char **envp)
 	print_jmsh_logo();
 	while (1)
 	{
+		set_sigs(1, 0);
 		_read_and_exec(&line, &my_envp, &built);
 		free(line);
 	}
