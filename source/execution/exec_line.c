@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 22:13:30 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 22:30:28 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,17 @@ void	free_tab_path(t_exec *exec)
 	return ;
 }
 
+void	free_tab_fd(t_exec *exec)
+{
+	int	i;
+
+	i = -1;
+	while (++i < exec -> nb_pipes)
+		free(exec -> fd[i]);
+	free(exec -> fd);
+	return ;
+}
+
 int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 {
 	t_exec	exec;
@@ -80,7 +91,7 @@ int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 		g_status = WTERMSIG(stat_last_pid) + 128;
 	free_tab_path(&exec);
 	free(exec.pid);
-	free(exec.fd);
+	free_tab_fd(&exec);
 	return (g_status);
 }
 
