@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 13:58:45 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:54:35 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,24 @@ void	exec_line(t_list *exec_blocks, char ***ptr_my_envp, t_builtin *builtin)
 	int		ac;
 	char	**av;
 	int		ind_built;
+	int		std_save[2];
 
 	ac = ((t_block *)exec_blocks -> content)-> n_arg;
 	av = ((t_block *)exec_blocks -> content)-> cmd_args;
-	//temporary action: print the content of the exec blocks
-	//ft_lstiter(exec_blocks, &_print_block);
-	//printf("\n");
-	//see the readme file
 	if (exec_blocks -> next == NULL)
 	{
 		ind_built = get_index_builtin(av[0], builtin -> names);
 		if (ind_built != -1)
 		{	
-			// fd_redir_one_block(exec, blocks); TODO
+			std_save[1] = dup(STDOUT_FILENO);
+			std_save[0] = dup(STDIN_FILENO);
+			fd_redir_one_block(exec_blocks -> content);
 			g_status = builtin -> f_ptr[ind_built](ac, av, ptr_my_envp);
+			dup2(std_save[1], STDOUT_FILENO);
+			dup2(std_save[0], STDIN_FILENO);
 			return ;
 		}
 	}
 	g_status = launch_exec(exec_blocks, builtin, ptr_my_envp);
 	return ;
 }
-
-	// my_exit("", WEXITSTATUS(stat_last_pid));
-	// close(exec.fd_in);
-	// close(exec.fd_out);
-	// waitpid(-1, &g_status, 0);
-	// waitpid(-1, NULL, 0);
