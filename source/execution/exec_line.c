@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 21:47:38 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 22:13:30 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_exec_struct(t_exec *exec, t_list *exec_blocks, char **my_env)
 	exec->pid = ft_calloc(sizeof(exec->pid), exec->nb_cmd);
 	if (exec->pid == NULL)
 		my_exit("Malloc error in init_exec_struct\n", EXIT_FAILURE);
+	exec -> path = NULL;
 	while (my_env[++i])
 	{
 		if (ft_strncmp(my_env[i], "PATH=", 5) == 0)
@@ -44,9 +45,12 @@ void	free_tab_path(t_exec *exec)
 	int	i;
 
 	i = -1;
+	if (exec -> path == NULL)
+		return ;
 	while (exec->path[++i])
 		free(exec->path[i]);
 	free(exec->path);
+	return ;
 }
 
 int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
