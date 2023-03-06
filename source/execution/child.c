@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:46:46 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/05 18:29:03 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:29:45 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	fd_redit(t_exec *exec, t_block *blocks)
 }
 
 // returns index of bultin in list below or -1 if not a builtin
-static int	get_index_builtin(char *cmd, char *names[N_BUILTIN])
+int	get_index_builtin(char *cmd, char *names[N_BUILTIN])
 {
 	int		ind;
 
@@ -102,7 +102,7 @@ void	child(t_exec *exec, t_block *blocks, t_builtin *builtin, char **my_env)
 	{	
 		g_status = builtin -> f_ptr[ind_built](blocks->n_arg,
 				blocks->cmd_args, &my_env);
-		return ;
+		exit(g_status); //TODO: exit a finir (free?)
 	}
 	else
 	{
