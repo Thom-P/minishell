@@ -6,13 +6,15 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 17:16:45 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 21:37:20 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:46:19 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jmsh.h"
 
 static void	_sigint_prompt(int signum);
+
+static void	_sigint_parent(int signum);
 
 static void	_switchof_echoctl(int fd);
 
@@ -31,12 +33,12 @@ void	set_sigs(int is_parent, int is_child_running)
 	}
 	else if (is_parent)
 	{
-		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_IGN);
+		_switchon_echoctl(fd);
+		signal(SIGINT, _sigint_parent);
+		signal(SIGQUIT, _sigint_parent);
 	}
 	else
 	{
-		_switchon_echoctl(fd);
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 	}
@@ -77,5 +79,12 @@ static void	_sigint_prompt(int signum)
 	printf("\n");
 	rl_on_new_line();
 	rl_redisplay();
+	return ;
+}
+
+static void	_sigint_parent(int signum)
+{
+	(void) signum;
+	printf("\n");
 	return ;
 }
