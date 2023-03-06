@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:52:14 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/05 18:25:17 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:33:09 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ char		*find_cmd(t_exec *exec, char *cmd);
 char		*access_cmd(t_exec *exec, char *cmd);
 void		pipe_init(t_exec *exec, int **fd);
 void		close_pipe(t_exec *exec);
+int			get_index_builtin(char *cmd, char *names[N_BUILTIN]);
 
 #endif
