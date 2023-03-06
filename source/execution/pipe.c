@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:26:21 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/02 18:11:18 by nadel-be         ###   ########.fr       */
+/*   Updated: 2023/03/06 21:58:27 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	pipe_init(t_exec *exec, int **fd)
 	while (++i < exec->nb_pipes)
 	{
 		fd[i] = ft_calloc(sizeof(*fd[i]), 2);
-		pipe(fd[i]);
+		if (fd[i] == NULL)
+			my_exit("malloc error in pipe_init\n", EXIT_FAILURE);
+		//pipe(fd[i]); // removed otherwise pipe created twice?
 		if (pipe(fd[i]) == -1)
-			return ;
+			my_exit("error: cannot create pipe in pipe_init\n", EXIT_FAILURE);
 	}
 }
 
