@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 14:08:53 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/06 22:12:11 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 14:12:06 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*access_cmd(t_exec *exec, char *cmd)
 	char	*tmp;
 
 	i = -1;
-	if (exec -> path == NULL)
+	if (exec -> path == NULL || *cmd == '\0')
 		return (NULL);
 	while (exec->path[++i])
 	{

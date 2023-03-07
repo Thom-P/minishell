@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 15:13:51 by tplanes           #+#    #+#             */
-/*   Updated: 2023/02/26 17:19:27 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 14:48:46 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ static void	_copy_input_to_file(int fd, char *delim)
 {
 	char	*line;
 
-	line = readline(">");
+	line = readline("> ");
 	while (line && ft_strncmp(line, delim, ft_strlen(delim)) != 0)
 	{
 		write(fd, line, ft_strlen(line));
 		free(line);
 		write(fd, "\n", 1);
-		line = readline(">");
+		line = readline("> ");
 	}
 	free(line);
 	return ;

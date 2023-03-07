@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:07:18 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/05 12:04:50 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 14:30:21 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ int	b_cd(int ac, char **av, char ***ptr_my_env)
 	if (exit_status != 0)
 	{
 		free(old_pwd);
-		perror("jmsh: cd");
+		ft_printf(2, "jmsh: cd: %s: ", av[1]);
+		perror("");
 		return (1);
 	}
 	_update_oldpwd_env(old_pwd, ptr_my_env);
-	free(old_pwd);
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		my_exit("getcwd error in b_cd\n", EXIT_FAILURE);
 	_update_pwd_env(pwd, ptr_my_env);
-	free(pwd);
 	return (exit_status);
 }
 
@@ -51,6 +50,7 @@ static void	_update_oldpwd_env(char *old_pwd, char ***ptr_my_env)
 
 	av_eff[0] = "export";
 	av_eff[1] = ft_strjoin("OLDPWD=", old_pwd);
+	free(old_pwd);
 	if (av_eff[1] == NULL)
 		my_exit("malloc err in strjoin, _update_old_pwd, b_cd\n", EXIT_FAILURE);
 	av_eff[2] = NULL;
@@ -65,6 +65,7 @@ static void	_update_pwd_env(char *pwd, char ***ptr_my_env)
 
 	av_eff[0] = "export";
 	av_eff[1] = ft_strjoin("PWD=", pwd);
+	free(pwd);
 	if (av_eff[1] == NULL)
 		my_exit("malloc err in strjoin, _update_old_pwd, b_cd\n", EXIT_FAILURE);
 	av_eff[2] = NULL;

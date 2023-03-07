@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:46:46 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/07 11:23:30 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 15:11:35 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,20 @@ void	find_and_exec(t_exec *exec, t_block *blocks, char **my_env)
 		cmd = ft_strdup(blocks->cmd_args[0]);
 		if (cmd == NULL)
 			my_exit("mallor error in child\n", EXIT_FAILURE);
+		if (access(cmd, F_OK) != 0)
+		{
+			g_status = 127;
+			ft_printf(2, "jmsh: %s: No such file or directory\n", cmd);
+			my_exit("", g_status);
+		}
 	}
 	else
 		cmd = find_cmd(exec, blocks->cmd_args[0]);
 	g_status = execve(cmd, blocks->cmd_args, my_env);
 	if (g_status == -1)
 	{
-		perror("jmsh");
+		ft_printf(2, "jmsh: %s: ", cmd);
+		perror("");
 		g_status = 126;
 		my_exit("", g_status);
 	}
