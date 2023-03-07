@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/07 11:30:04 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 15:41:25 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,41 @@ int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 	return (g_status);
 }
 
-void	exec_line(t_list *exec_blocks, char ***ptr_my_envp, t_builtin *builtin)
-{
+void	e_built(t_list *exec_blocks, t_builtin *builtin,
+	int ind_built, char ***ptr_my_envp)
+{	
 	int		ac;
 	char	**av;
-	int		ind_built;
 	int		std_save[2];
 
 	ac = ((t_block *)exec_blocks -> content)-> n_arg;
 	av = ((t_block *)exec_blocks -> content)-> cmd_args;
+	std_save[1] = dup(STDOUT_FILENO);
+	std_save[0] = dup(STDIN_FILENO);
+	if (fd_redir_one_block(exec_blocks -> content) == 0)
+	{
+		if (av[0] != NULL)
+			g_status = builtin -> f_ptr[ind_built](ac, av, ptr_my_envp);
+	}	
+	else
+		g_status = 1;
+	dup2(std_save[1], STDOUT_FILENO);
+	dup2(std_save[0], STDIN_FILENO);
+	return ;
+}
+
+void	exec_line(t_list *exec_blocks, char ***ptr_my_envp, t_builtin *builtin)
+{
+	int		ind_built;
+	char	**av;
+
+	av = ((t_block *)exec_blocks -> content)-> cmd_args;
 	if (exec_blocks -> next == NULL)
 	{
 		ind_built = get_index_builtin(av[0], builtin -> names);
-		if (ind_built != -1)
+		if (ind_built != -1 || av[0] == NULL)
 		{	
-			std_save[1] = dup(STDOUT_FILENO);
-			std_save[0] = dup(STDIN_FILENO);
-			if (fd_redir_one_block(exec_blocks -> content) == 0)
-				g_status = builtin -> f_ptr[ind_built](ac, av, ptr_my_envp);
-			else
-				g_status = 1;
-			dup2(std_save[1], STDOUT_FILENO);
-			dup2(std_save[0], STDIN_FILENO);
+			e_built(exec_blocks, builtin, ind_built, ptr_my_envp);
 			return ;
 		}
 	}
