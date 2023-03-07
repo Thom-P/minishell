@@ -6,7 +6,7 @@
 #    By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 15:26:24 by nadel-be          #+#    #+#              #
-#    Updated: 2023/03/06 18:38:11 by nadel-be         ###   ########.fr        #
+#    Updated: 2023/03/07 11:41:05 by nadel-be         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,10 +158,6 @@ CFLAGS			= -Wall -Wextra -Werror
 # **************************************************************************** #
 all:		$(NAME)
 
-jmsh: all
-	@clear
-	@./$(NAME)
-
 %.o: %.c
 	$(CC) $(CFLAGS) $(ALLINC) -o $@ -c $<
 
@@ -169,7 +165,7 @@ $(NAME):	$(OBJS)
 	@make -C $(LIBFTPATH)
 	@printf "$(Blu)Making libft... $(RCol)"
 	@mv $(LIBFTPATH)$(LIBFT) $(LIBFT)
-	@$(CC) -o $(NAME) $(OBJS) $(CFLAGS) $(ALLINC) -L. -lft $(RLNAIM)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(CFLAGS) $(ALLINC) -L. -lft $(RLNAIM)
 	@echo "$(Gre)Done!$(RCol)"
 
 clean:
