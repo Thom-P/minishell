@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 12:03:15 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/06 16:59:12 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 11:30:15 by nadel-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ void	fd_redir(t_exec *exec, t_block *blocks)
 	{
 		if (blocks->redir[i] == in)
 		{
-			exec->fd_in = search_fd(blocks->files[i], blocks->redir[i], is_child);
+			exec->fd_in
+				= search_fd(blocks->files[i], blocks->redir[i], is_child);
 			dup2(exec->fd_in, STDIN_FILENO);
 			close(exec->fd_in);
 		}
 		if (blocks->redir[i] == out || blocks->redir[i] == append)
 		{
-			exec->fd_out = search_fd(blocks->files[i], blocks->redir[i], is_child);
+			exec->fd_out
+				= search_fd(blocks->files[i], blocks->redir[i], is_child);
 			dup2(exec->fd_out, STDOUT_FILENO);
 			close(exec->fd_out);
 		}
@@ -62,15 +64,13 @@ int	fd_redir_one_block(t_block *blocks)
 	int	i;
 	int	fd_in;
 	int	fd_out;
-	int	is_child;
 
-	is_child = 0;
 	i = -1;
 	while (blocks->files[++i])
 	{
 		if (blocks->redir[i] == in)
 		{
-			fd_in = search_fd(blocks->files[i], blocks->redir[i], is_child);
+			fd_in = search_fd(blocks->files[i], blocks->redir[i], 0);
 			if (fd_in == -1)
 				return (-1);
 			dup2(fd_in, STDIN_FILENO);
@@ -78,7 +78,7 @@ int	fd_redir_one_block(t_block *blocks)
 		}
 		if (blocks->redir[i] == out || blocks->redir[i] == append)
 		{
-			fd_out = search_fd(blocks->files[i], blocks->redir[i], is_child);
+			fd_out = search_fd(blocks->files[i], blocks->redir[i], 0);
 			if (fd_out == -1)
 				return (-1);
 			dup2(fd_out, STDOUT_FILENO);
