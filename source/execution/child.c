@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:46:46 by nadel-be          #+#    #+#             */
-/*   Updated: 2023/03/06 16:43:34 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 11:23:30 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,30 @@ int	get_index_builtin(char *cmd, char *names[N_BUILTIN])
 	return (-1);
 }
 
-void	child(t_exec *exec, t_block *blocks, t_builtin *builtin, char **my_env)
+void	find_and_exec(t_exec *exec, t_block *blocks, char **my_env)
 {
 	char	*cmd;
+
+	if (ft_strchr(blocks->cmd_args[0], '/'))
+	{
+		cmd = ft_strdup(blocks->cmd_args[0]);
+		if (cmd == NULL)
+			my_exit("mallor error in child\n", EXIT_FAILURE);
+	}
+	else
+		cmd = find_cmd(exec, blocks->cmd_args[0]);
+	g_status = execve(cmd, blocks->cmd_args, my_env);
+	if (g_status == -1)
+	{
+		perror("jmsh");
+		g_status = 126;
+		my_exit("", g_status);
+	}
+	return ;
+}
+
+void	child(t_exec *exec, t_block *blocks, t_builtin *builtin, char **my_env)
+{
 	int		ind_built;
 
 	if (exec->nb_blocks > 1)
@@ -61,22 +82,6 @@ void	child(t_exec *exec, t_block *blocks, t_builtin *builtin, char **my_env)
 				blocks->cmd_args, &my_env);
 		exit(g_status);
 	}
-	else
-	{
-		if (ft_strchr(blocks->cmd_args[0], '/'))
-		{
-			cmd = ft_strdup(blocks->cmd_args[0]);
-			if (cmd == NULL)
-				my_exit("mallor error in child\n", EXIT_FAILURE);
-		}
-		else
-			cmd = find_cmd(exec, blocks->cmd_args[0]);
-		g_status = execve(cmd, blocks->cmd_args, my_env);
-		if (g_status == -1)
-		{
-			perror("jmsh");
-			g_status = 126;
-			my_exit("", g_status);
-		}
-	}
+	find_and_exec(exec, blocks, my_env);
+	return ;
 }
