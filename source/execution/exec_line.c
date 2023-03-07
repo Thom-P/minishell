@@ -6,7 +6,7 @@
 /*   By: nadel-be <nadel-be@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:47:32 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 22:30:28 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 11:30:04 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,7 @@ void	init_exec_struct(t_exec *exec, t_list *exec_blocks, char **my_env)
 	return ;
 }
 
-void	free_tab_path(t_exec *exec)
-{
-	int	i;
-
-	i = -1;
-	if (exec -> path == NULL)
-		return ;
-	while (exec->path[++i])
-		free(exec->path[i]);
-	free(exec->path);
-	return ;
-}
-
-void	free_tab_fd(t_exec *exec)
+void	free_path_and_fd(t_exec *exec)
 {
 	int	i;
 
@@ -61,6 +48,12 @@ void	free_tab_fd(t_exec *exec)
 	while (++i < exec -> nb_pipes)
 		free(exec -> fd[i]);
 	free(exec -> fd);
+	i = -1;
+	if (exec -> path == NULL)
+		return ;
+	while (exec->path[++i])
+		free(exec->path[i]);
+	free(exec->path);
 	return ;
 }
 
@@ -75,8 +68,7 @@ int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 	exec.n = -1;
 	while (++(exec.n) < exec.nb_cmd)
 	{
-		fork_init(&exec, (t_block *)(exec_blocks -> content), builtin,
-			*my_env);
+		fork_init(&exec, (t_block *)(exec_blocks -> content), builtin, *my_env);
 		exec_blocks = exec_blocks->next;
 	}
 	if (exec.nb_pipes > 0)
@@ -89,9 +81,8 @@ int	launch_exec(t_list *exec_blocks, t_builtin *builtin, char ***my_env)
 		g_status = WEXITSTATUS(stat_last_pid);
 	else if (WIFSIGNALED(stat_last_pid))
 		g_status = WTERMSIG(stat_last_pid) + 128;
-	free_tab_path(&exec);
+	free_path_and_fd(&exec);
 	free(exec.pid);
-	free_tab_fd(&exec);
 	return (g_status);
 }
 
