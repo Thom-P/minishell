@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:20:20 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/06 20:41:15 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 10:41:23 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	_read_and_exec(char **line, char ***ptr_my_envp, t_builtin *built)
 	*line = readline(prompt);
 	free(prompt);
 	if (*line == NULL)
-		my_exit("", g_status);
+		my_exit("exit\n", g_status);
 	if (**line == '\0')
 		return ;
 	add_history(*line);

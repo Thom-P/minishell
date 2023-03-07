@@ -6,7 +6,7 @@
 /*   By: tplanes <tplanes@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:56:43 by tplanes           #+#    #+#             */
-/*   Updated: 2023/03/02 14:40:53 by tplanes          ###   ########.fr       */
+/*   Updated: 2023/03/07 10:22:44 by tplanes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	b_exit(int ac, char **av, char ***ptr_my_envp)
 		return (1);
 	}
 	if (ac == 1)
-		exit(g_status);
+		my_exit("exit\n", g_status);
 	if (!_is_only_num(av[1]))
 	{
-		printf("jmsh: exit: %s: numeric argument required\n", av[1]);
+		printf("exit\njmsh: exit: %s: numeric argument required\n", av[1]);
 		exit(255);
 	}
 	else
-		exit(ft_atoi(av[1]));
+		my_exit("exit\n", ft_atoi(av[1]));
 	return (0);
 }
 
